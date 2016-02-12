@@ -1,4 +1,5 @@
-#Sanam Style Convention
+
+# Sanam Style Convention
 
 **Sanam, A minimal and flexible approach to developing maintainable & large scalable stylesheet.**
 
@@ -63,7 +64,7 @@ you should get the core principles and implement them in your projects as suits 
 34. Documentation
 35. Common Sense 
 
-#About Author
+# About Author
 My name is Sajjad M.Beiraghdar, I'm 30 Year old Frontend developer & UX Designer 
 and former FullStack Developer From Tehran,Iran.
 I'm currently working in Jobinja.ir as Co-Founder and Frontend Developer.
@@ -81,7 +82,7 @@ can maintain the project stylesheet. In case of project refactoring establishing
 is necessary, in large project with around 5K LOC or more stylesheets using a CSS test framework to
 detect broken styles during refactor can help a lot.
 
-#Namespaces
+# Namespaces
 The main reason of lacking an easy to read and maintain codebase in scale is lack of clarity and
 confidence, people aren’t confident what are the side effects of modifying a selector,
 what does a selector and what are it’s use cases as a result we afraid to touch old codes so we start to
@@ -119,7 +120,7 @@ begins with ‘u’ namespace and this telling us several useful information.
 
 Sanam Style Convention suggests twelve different name spaces as following 
 
-##Utility Classes (u-)
+## Utility Classes (u-)
 Utility classes are simple classes with a specific small task. Common examples of
 this type of classes are floating, clearFix, text alignment classes. these classes are
 reusable and can be used anywhere and should not be bound onto or changed, they can be added
@@ -140,7 +141,7 @@ Utility classes name space is **u-**
 }
 ```
 
-##Layout Classes (l-)
+## Layout Classes (l-)
 Layout Classes are responsible for structure and cosmetic of a specific layout type in project,
 in most project they have rare use cases. They should not be bound onto. This type of
 classes uses BEM convention to name layout and it’s element. 
@@ -165,10 +166,11 @@ classes uses BEM convention to name layout and it’s element.
 }
 ```
 
-##Scoping Classes (s-)
+## Scoping Classes (s-)
 
+---
 
-#License
+# License
  
  (The MIT License)
  
