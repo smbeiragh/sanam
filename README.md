@@ -15,11 +15,11 @@ and current style guides. Sanam goal is to provide a set of conventions that let
 Sanam borrows some of it’s main Ideas and features from following resources:
 
 - Namespaces idea from [Harry Roberts Article](http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
-- BEM css syntax as component/module pattern convention [BEM](https://en.bem.info/)
-- Variables and scale variables idea [Fat Article on Medium](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06)
-- General idea of directory structure the 7-1 pattern [Sass Guidelines](http://sass-guidelin.es/)
-- Limiting preprocessors features Based on numerous articles including[(1)](http://csswizardry.com/2012/05/keep-your-css-selectors-short/)[(2)](http://thesassway.com/intermediate/avoid-nested-selectors-for-more-modular-css)[(3)](http://www.sitepoint.com/avoid-sass-extend/)
-- Some other articles from [This Repo](https://github.com/davidtheclark/scalable-css-reading-list) that I will mention later 
+- [BEM](https://en.bem.info/) css nameing convention as component/module pattern convention
+- Variables and scale variables idea from [Fat Article on Medium](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06)
+- General idea of directory structure & the 7-1 pattern from [Sass Guidelines](http://sass-guidelin.es/)
+- Limiting preprocessors features Based on numerous articles including [(1)](http://csswizardry.com/2012/05/keep-your-css-selectors-short/)[(2)](http://thesassway.com/intermediate/avoid-nested-selectors-for-more-modular-css)[(3)](http://www.sitepoint.com/avoid-sass-extend/)
+- Some other articles from [This Repo](https://github.com/davidtheclark/scalable-css-reading-list) that I will mention. 
 
 Sanam documentary is based on SASS-Lang, but it can be adopted to be used with conjunction
 of any preprocessor language or even pure css using postprocessors or task runners.
@@ -76,8 +76,8 @@ After reading lots of articles & methodologies I conducted this convention,
 Sanam is a subset and un-opinionated version of that effort.
 I used this convention on several project with major refactors and the results was like magic. 
 After few weeks we had a clean, easy to read and modify large code base!
-I strongly recommend Sanam Style Convention for new projects. It helps Your code keep clean 
-and easy maintainable even with newcomer team members. Every body how get familiar with convention
+I strongly recommend Sanam Style Convention for new projects. It helps you to keep your code clean 
+and easy to maintain and modify even with newcomer team members. Every body how get familiar with convention
 can maintain the project stylesheet. In case of project refactoring establishing suitable workflow
 is necessary, in large project with around 5K LOC or more stylesheets using a CSS test framework to
 detect broken styles during refactor can help a lot.
