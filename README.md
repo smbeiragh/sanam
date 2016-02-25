@@ -16,7 +16,7 @@ Sanam borrows some of it’s main Ideas and features from following resources:
 
 - Namespaces idea from [Harry Roberts Article](http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
 - [BEM](https://en.bem.info/) css nameing convention as component/module pattern convention
-- Variables and scale variables idea from [Fat Article on Medium](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06)
+- Variables and scale variables idea from [Fat's Article on Medium](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06)
 - General idea of directory structure & the 7-1 pattern from [Sass Guidelines](http://sass-guidelin.es/)
 - Limiting preprocessors features Based on numerous articles including [(1)](http://csswizardry.com/2012/05/keep-your-css-selectors-short/)[(2)](http://thesassway.com/intermediate/avoid-nested-selectors-for-more-modular-css)[(3)](http://www.sitepoint.com/avoid-sass-extend/)
 - Some other articles from [This Repo](https://github.com/davidtheclark/scalable-css-reading-list) that I will mention. 
@@ -31,24 +31,25 @@ you should get the core principles and implement them in your projects as suits 
 1. [About Author](#about-author)
 2. Namespaces
 3. Util Classes
-4. layout Classes
-5. Scoping Classes
-6. Theme Classes
-7. State Classes
-8. Javascript Classes
-9. Testing Classes
-10. Hack Classes
-11. Objects
-12. Component/Modules
+4. Scoping
+5. Theme Classes
+6. State Classes
+7. Javascript Classes
+8. Testing Classes
+9. Hack Classes
+10. Objects
+11. Component/Modules
+12. Layouts
 13. Layout Level Objects
 14. Page Level Styles
-15. BEM
+15. Modular Pattern
 16. Responsive
 17. Variables
 18. Colors
 19. Color Pallet
 20. Gray Shades
 21. Semantic Colors
+22. Brand Colors
 22. Z-index
 23. Typography
 24. Limiting preprocessors features
@@ -60,9 +61,10 @@ you should get the core principles and implement them in your projects as suits 
 30. Vendors Override
 31. Legacy styles 
 32. Shame styles
-33. Big Picture of Directory structure
-34. Documentation
-35. Common Sense 
+33. Reset styles
+34. Big Picture of Directory structure
+35. Documentation
+36. Common Sense 
 
 # About Author
 My name is Sajjad M.Beiraghdar, I'm 30 Year old Frontend developer & UX Designer 
@@ -118,7 +120,9 @@ begins with ‘u’ namespace and this telling us several useful information.
 4. this can be reused anywhere to float left anything
 5. we should not bind on it, for example writing a selector like ‘.some-class .u-pullLeft’
 
-Sanam Style Convention suggests twelve different name spaces as following 
+Sanam Style Convention suggests twelve different name spaces as following. You can adopt your own set of
+name spaces to fit your work, keeping in mind 1)each namespace should have a specefic nad simple to understand goal
+and 2)keep numbers of namespaces small as small possible   
 
 ## Utility Classes (u-)
 Utility classes are simple classes with a specific small task. Common examples of
@@ -141,12 +145,102 @@ Utility classes name space is **u-**
 }
 ```
 
+## Scoping Classes (s-)
+Scoping classes lets to define a scope of DOM whit special styles, .e.g in content manage management system, dynamic contents like post and pages
+can be considered as content scope, under content scope we can setup a custom typography, styling headings, paragraphes etc.
+These classes can lead to pure css codes and should be used wisely and limited. 
+
+```css
+/* the p tag style in cms content scope */
+.s-cmsContent p{
+ margin-bottom: 1rem
+}
+```
+
+## Theme Classes (t-)
+Template classes like Scoping classes are a mean to define a scope of DOM for cosmetic changes, They used typicaly in style switchers.
+
+``` css
+/* the main header of page in sky theme */
+.t-skyThem c-mainHeader{
+ background-color: blue;
+}
+```
+ 
+## State Classes (is-, has-)
+State classes define a pice of UI in a temporarey specified state or condition, e.g. is-hidden, is-selected, is-disabled, .etc  
+As Harry Roberts says:
+>It tells us that the DOM currently has a temporary, optional, or short-lived style applied to it due to a certain state being invoked.
+
+``` css
+/* the main header in collapsed state */
+.c-mainHeader.is-collapsed{
+ background-color: blue;
+}
+```
+ 
+## Javascript Classes (js-)
+These classes are javascript hooks to DOM. Styles should not be bound onto these classes,
+they tell developer this class is a javascript hook and should not be removed or changed or bound on to it or rely on them. 
+
+## Javascript Classes (qa-)
+These classes like js classes are hooks to DOM for test frameworks and tools. Like js classes they should not be bound on to or
+apply styles on them.
+
+## Hack Classes (_)
+These classes are the worst classes, hack. sometimes we need to apply a class on DOM to force something to work.
+We need to tell this class is less than ideal as is temporary.
+
+## Object Classes (o-)
+Object classes are abstracted pure structural and none cosmetic reusable pice of UI. they may be used anywhere and 
+modifying them may have undesired side effects on many other unknown places. generaly we should avoid modifying
+them or be carefull about modifing them. Objects considered to be under open/closed principle, it means they are open 
+to extending but close to modifing. We often extend them and only modify them on major refactors.
+Sanam reacommands use of BEM methodology on this namespace.
+  
+>BEM convention will covered in section 15  
+
+Format:
+``` css
+.o-objectName[<element>|<modifier>] {}
+```
+
+Examples:
+``` css
+// widget object root element class
+.o-widget {}
+
+// widget heading element class
+.o-widget__heading {}
+```
+
+## Component/Module Classes (c-)
+Components are reusable pice of UI, they can represent any visual repeatitive pice of UI that anyone can
+recognize them. Like buttons, dropdowns and so on. A component may have other components as children
+(composition) but a component may not extend other components but may extend an *Object*. By this limitation
+on extending, we limit modifiying side effects of a component on the modified component, it lets us to confidently
+edit that component and check all instances of that component with a simple search while finding all instance of
+several unknown components that are extending a modified component needs careful checking in markup and it can
+be a large amount of effort. In contrast to Objects, components are close to extending but open to modifying.
+like objects, component classes benefits BEM methodology.
+  
+Format:
+```css
+.c-componentName[<element>|<modifier>] {}
+```
+
+Examples:
+```css
+// navbar components root element class
+.o-navbar {}
+
+// navbar logo element class
+.o-navbar__logo {}
+```  
+
 ## Layout Classes (l-)
 Layout Classes are responsible for structure and cosmetic of a specific layout type in project,
-in most project they have rare use cases. They should not be bound onto. This type of
-classes uses BEM convention to name layout and it’s element. 
-
->BEM convention will covered in section 15
+in most projects they have rare use cases. They should not be bound onto. Layout classes benefits BEM methodology.
 
 ```css
 /* the default layout root element */
@@ -166,9 +260,337 @@ classes uses BEM convention to name layout and it’s element.
 }
 ```
 
-## Scoping Classes (s-)
+## Layout Level Objects (lo-)
+Sometimes there are few shared common features in between different layout, like fixed footer. layout level objects
+are a mean to make this type of features reusable and encapsulated in a set of classes. Like layout classes,
+layout level object benefits BEM methodology 
 
----
+## Page Level Styles (p-)
+Sometimes we need to apply style on specefic page. in well designed component based system this can happen rarery.
+Sanam suggests to provide a top level scoping class .e.g on body or html tag using a name based on page name.
+under this scope we can override every aspect of page including components and layout. but keep in mind modifing a
+component or layout in page level can be a sign of lacking a modifier on component level or layout level and writing
+page level style generaly is not a good idea and can be lead to hard to maintain code.
+When modifing any thing, try to be explicit and don't on classes of different namespaces by defining
+classes in page level namespace.
+
+```css
+// the root class on body tag for scoping
+.p-home {
+}
+
+// root element of navbar component of home page
+.p-home__nav {
+}
+
+// item elemet of navebar component on home page
+.p-home__nav__item{
+}
+
+// BAD, bounding on component class
+// this can overide all nav components on home page
+.p-home .c-nav__item{
+}
+```
+
+## Modular Pattern
+Modularity lets us to organize most of our code in small reusable and easy to understand and maintain modules.
+Modularity in software brings many benefit including encapsulation, extensibility and compositions. using this
+pattern we bring the same benefits in CSS.
+
+*encapsulation*: 
+every module handles all of it's aspects including it's own state, elements, modifiers and
+has noting to with other modules.
+
+1. Every module defines its own style in a seprate file
+2. A module file containes only and only styles related to one module
+3. Every module has a root element which contains all elements of that module   
+4. CSS selectors of a module only includes classes of one module
+5. Every module can be used every where independent of it's own and document DOM Structure.   
+6. A child module should not know anything about it's parent module
+7. A parent module should not know about child module
+ 
+*extensibility*: 
+A module can extend another module, Because of simplicity Sanam limits extending to objects.
+When two modules has same element as root element we say one is extending another. this can be considered as special
+case of compositions where parent and child are at the same level.
+
+1. Components (modules in C namespace) can only and only extend Objects (modules in O namespace)
+2. Modules can modify base component elements/modifiers via its own module classe and not base module classes
+
+```html
+<!-- c-usersList extending o-list -->
+<ul class="c-usersList o-list">
+    <!-- c-usersList can modify o-list__item(item element) via c-usersList__item -->
+    <li class="c-usersList__item o-list__item"></li>
+</ul>
+```
+
+*compositions*: 
+A module can contain another module(s) as children.
+
+1. A parent module should not know about child module, and should not modify child component.
+2. A parent module can modify child component root element as its own element via parent module classes and 
+not child module class
+
+```html
+<!-- c-actionBar composed of bottons and c-userList -->
+<div class="c-actionBar">
+    <input class="c-btn c-btn--primary c-actionBar__action">
+    <input class="c-btn c-btn--default">
+    <input class="c-btn c-btn--default">
+    <ul class="c-usersList o-list c-actionBar__list">
+        <!-- c-usersList can modify o-list__item(item element) via c-usersList__item -->
+        <li class="c-usersList__item o-list__item"></li>
+    </ul>
+</div>
+```
+In this example c-actionBar can modify child bottom via c-actionBar__action,
+action element my be anything and c-actionBar just know there is a
+number or action elements an noting more, similary c-actionBar can modify c-usersList root element
+via c-actionBar__list, but it shouldn't modify c-userList items, because actionBar dose't know anything
+about c-usersList internals or event about its existence! if we would like to modify list it should be
+done as modifier on c-userList or event o-list to unifiy all lists in project level not based on parent
+component of list.
+
+There are several modular conventions including BEM, OCSS, SMACSS, DRY CSS. 
+Sanam recommands [BEM](https://en.bem.info/) as modular convention in several
+ namespaces including Components (c-), Objects (o-), Layouts (l-), Layout Objects (lo-) and Page level (p-)
+
+### Block-Element-Modifier (BEM)
+[BEM](https://en.bem.info/) is a modular convention from Russian search engine Yandex. BEM is similar to OOP and lets us to use OOP
+concepts in CSS. 
+
+BEM has three main parts:
+
+**Blocks**:
+Blocks are reusable and independent units of code, also called modules, 
+components and widgets. Every UI is composed of Blocks
+
+**Elements**:
+Every block or module consists of Element, for example a figure consists of captions and image element.
+
+**Modifiers**:
+Modifiers are a mean to define permanent or temporary state of a module or its module element.
+
+BEM define a naming convention for class names as following 
+
+```css
+// syntax
+.blockName[__elementName][--modiferName]
+
+// syntax with namespaces
+.nameSpace-blockName[__elementName][--modiferName]
+```
+  
+```css
+// the navbar block root element
+.c-nav{}
+
+// the link element in navbar
+.c-nav__link{}
+
+// the logo element in navbar block
+.c-nav__logo{}
+
+// the logo element in navbar block and the logo is in small mode
+.c-nav__logo--small{
+}
+```
+
+```html
+<nav class="c-nav">
+    <a class="c-nav__link" href="#"></a>
+    <img class="c-nav__logo c-nav__logo--small"> 
+</nav>
+```
+
+Following principles applies to BEM
+
+1. Every block must have a unique name
+2. Every block can contains several elements with unique names
+ in scope of tha block
+3. Every block can contains several elements with the same name
+4. Tag names should not be used in css selectors 
+5. Descendant selectors should be avoided except when applying
+ a top level modifier or state class.
+  
+> Sanam uses camelCase naming and (-, --, __) as semantic seperators   
+ 
+Read More about BEM in practice in these [great](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) [articles](https://css-tricks.com/bem-101/) and [website](http://getbem.com/)  
+
+## Responsive
+Developing responsive website using pure media queries is not scaleable even in website with few pages.
+
+1. using pure media queries is not scalable
+2. final code is not readable enough
+3. designers and developers communication is not easy
+4. changing a breakpoint is painful
+
+To address this issues, Saname recommands use of name breakpoints and an API e.g. a mixin via a pre-processor
+ languages e.g SASS.
+ 
+For example we can define a set of variables or a sass map as reference of named breakpoints and a mixin
+as API that gets breakpoint names or variables and writes media queries for us. we also can use libraries like
+[SASS-MQ](https://github.com/sass-mq/sass-mq)
+
+**example**
+Using mixin and sass map, you can read more about this topic on this [great article](http://www.sitepoint.com/managing-responsive-breakpoints-sass/)
+```SCSS
+$breakpoints: (
+  'small'  : ( min-width:  767px ),
+  'medium' : ( min-width:  992px ),
+  'large'  : ( min-width: 1200px )
+);
+ 
+@mixin respond-to($name) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $name) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+// usage
+@include respond-to(small) { ... }
+@include respond-to(medium) { ... }
+@include respond-to(large) { ... }
+``` 
+
+## Variable
+Sanam Uses Following syntax for defining variables. all following parts are camelCase
+
+```css
+<propertyName>-<valueName>[--componentName[__elementName[--modifierName]]]
+```
+
+This syntax has several benefits:
+
+1. great auto complete by IDE, for example when you are going to set a color
+ by typing color IDE will show a list of all color variable
+2. property name and value name give us a good idea about what this variable
+ containes
+3. component naming part tells where this variable is used. 
+
+## Colors
+Sanam Organize colors in four different categories including pallet colors, 
+gray scale colors, semantic colors and brand colors. Colors are one of types
+that can go out of control easily, managing number of colors can help reduce
+styles size. To mange colors applying all colors must be done via variables,
+also using an API like a SASS function can be useful but simplicity in this
+area can be more useful. Sanam suggests simple variables because:
+
+1. variables are easier to locate and search
+2. variables lets us benefit IDE auto complete
+
+hsl color format is recomanded because:
+
+1. it's more understandable and meaningful for humans
+2. it's easer to notice un-intended color changes
+
+sometimes we need to create an extra shade of a defined color which is not pre
+defined in variable in such cases we can use helper function to apply a custom
+shade or alpha chanel, but this cases should be minor. if it often happens it 
+may you should re-tune predefined shades or add a few more shades as predefined
+and don't let number of colors go out of control.
+
+## Pallet Colors
+Base on colors teory there are four type color pallets.
+
+1. mono color with a single primary color
+2. adjacent colors and triad colors with one primary color and two secondary colors)
+3. Tetrad colors with four colors one primary color and two secondary colors plus
+ a complement color
+
+Sanam define four different color name as primary, secondary1, secondary2 and a 
+complement for the maximum number of colors and semantic names for several shades
+of each color. base on variable naming convention an example can look like this
+
+```scss
+
+$color-primary--lightest:  hsl(192, 90, 70);
+$color-primary--lighter:   hsl(192, 90, 60);
+$color-primary--light:     hsl(192, 90, 50);
+$color-primary--base:      hsl(192, 90, 40);
+$color-primary--dark:      hsl(192, 90, 30);
+$color-primary--darker:    hsl(192, 90, 20);
+$color-primary--darkest:   hsl(192, 90, 10);
+
+$color-secondary1--lightest:  hsl(230, 90, 70);
+$color-secondary1--lighter:   hsl(230, 90, 60);
+$color-secondary1--light:     hsl(230, 90, 50);
+$color-secondary1--base:      hsl(230, 90, 40);
+$color-secondary1--dark:      hsl(230, 90, 30);
+$color-secondary1--darker:    hsl(230, 90, 20);
+$color-secondary1--darkest:   hsl(230, 90, 10);
+
+$color-secondary2--lightest:  hsl(180, 90, 70);
+$color-secondary2--lighter:   hsl(180, 90, 60);
+$color-secondary2--light:     hsl(180, 90, 50);
+$color-secondary2--base:      hsl(180, 90, 40);
+$color-secondary2--dark:      hsl(180, 90, 30);
+$color-secondary2--darker:    hsl(180, 90, 20);
+$color-secondary2--darkest:   hsl(180, 90, 10);
+
+$color-complement--lightest:  hsl(10, 90, 70);
+$color-complement--lighter:   hsl(10, 90, 60);
+$color-complement--light:     hsl(10, 90, 50);
+$color-complement--base:      hsl(10, 90, 40);
+$color-complement--dark:      hsl(10, 90, 30);
+$color-complement--darker:    hsl(10, 90, 20);
+$color-complement--darkest:   hsl(10, 90, 10);
+
+```
+
+## Gray Shades
+Gray shades in most projects can get crazy very easly, Ideally having five
+different shades plus one white and black is enough but most designers are
+picky about color specially about gray shades. they would like to tune them
+test them and so on. this can very easily end to having about 60 gray shades
+in small project. it's enough to have five or seven gray shades like pallet colors
+but if you think that's not working for you, Sanam recommand use variable names
+with color code in name. By doing this next time we try to apply a new gray
+shade IDE will show us list of all defined shades and we can chose to add 
+a new shade of pike one of predefined shades. In case of not using IDE,
+preprocessor will complain about undefined variable and we will notice, then
+we can check our predefined gray variable to decide to define new variable or
+pike an old one.
+Also we can analyse gray shades useage to minimize and re-tune them later. 
+
+Example:
+```scss
+// basic solustion
+$color-white: #fff;
+$color-black: #000;
+$color-gray--lightest:  #eee;
+$color-gray--lighter:   #aaa;
+$color-gray--light:     #666;
+$color-gray--base:      #444;
+$color-gray--dark:      #222;
+$color-gray--darker:    #111;
+$color-gray--darkest:   #000;
+
+// advance solution for complex projects
+$color-gray-f-f: #ffffff;
+$color-gray-f-5: #f5f5f5;
+$color-gray-f-0: #f0f0f0;
+$color-gray-e-e: #eeeeee;
+// .... lots of other variables
+$color-gray-7-a: #7a7a7a;
+$color-gray-7-0: #707070;
+$color-gray-4-4: #444444;
+$color-gray-1-1: #111111;
+$color-gray-0-0: #000000;
+
+```
 
 # License
  
