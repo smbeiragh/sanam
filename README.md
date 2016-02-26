@@ -50,7 +50,7 @@ you should get the core principles and implement them in your projects as suits 
 20. Gray Shades
 21. Semantic Colors
 22. Brand Colors
-22. Z-index
+22. Z-index Scale
 23. Typography
 24. Limiting preprocessors features
 25. Nesting
@@ -493,7 +493,7 @@ area can be more useful. Sanam suggests simple variables because:
 
 hsl color format is recomanded because:
 
-1. it's more understandable and meaningful for humans
+1. it's more understandable and meaningful to humans
 2. it's easer to notice un-intended color changes
 
 sometimes we need to create an extra shade of a defined color which is not pre
@@ -516,37 +516,37 @@ of each color. base on variable naming convention an example can look like this
 
 ```scss
 
-$color-primary--lightest:  hsl(192, 90, 70);
-$color-primary--lighter:   hsl(192, 90, 60);
-$color-primary--light:     hsl(192, 90, 50);
-$color-primary--base:      hsl(192, 90, 40);
-$color-primary--dark:      hsl(192, 90, 30);
-$color-primary--darker:    hsl(192, 90, 20);
-$color-primary--darkest:   hsl(192, 90, 10);
+$color-primary--lightest:  hsl(192, 90%, 70%);
+$color-primary--lighter:   hsl(192, 90%, 60%);
+$color-primary--light:     hsl(192, 90%, 50%);
+$color-primary--base:      hsl(192, 90%, 40%);
+$color-primary--dark:      hsl(192, 90%, 30%);
+$color-primary--darker:    hsl(192, 90%, 20%);
+$color-primary--darkest:   hsl(192, 90%, 10%);
 
-$color-secondary1--lightest:  hsl(230, 90, 70);
-$color-secondary1--lighter:   hsl(230, 90, 60);
-$color-secondary1--light:     hsl(230, 90, 50);
-$color-secondary1--base:      hsl(230, 90, 40);
-$color-secondary1--dark:      hsl(230, 90, 30);
-$color-secondary1--darker:    hsl(230, 90, 20);
-$color-secondary1--darkest:   hsl(230, 90, 10);
+$color-secondary1--lightest:  hsl(230, 90%, 70%);
+$color-secondary1--lighter:   hsl(230, 90%, 60%);
+$color-secondary1--light:     hsl(230, 90%, 50%);
+$color-secondary1--base:      hsl(230, 90%, 40%);
+$color-secondary1--dark:      hsl(230, 90%, 30%);
+$color-secondary1--darker:    hsl(230, 90%, 20%);
+$color-secondary1--darkest:   hsl(230, 90%, 10%);
 
-$color-secondary2--lightest:  hsl(180, 90, 70);
-$color-secondary2--lighter:   hsl(180, 90, 60);
-$color-secondary2--light:     hsl(180, 90, 50);
-$color-secondary2--base:      hsl(180, 90, 40);
-$color-secondary2--dark:      hsl(180, 90, 30);
-$color-secondary2--darker:    hsl(180, 90, 20);
-$color-secondary2--darkest:   hsl(180, 90, 10);
+$color-secondary2--lightest:  hsl(180, 90%, 70%);
+$color-secondary2--lighter:   hsl(180, 90%, 60%);
+$color-secondary2--light:     hsl(180, 90%, 50%);
+$color-secondary2--base:      hsl(180, 90%, 40%);
+$color-secondary2--dark:      hsl(180, 90%, 30%);
+$color-secondary2--darker:    hsl(180, 90%, 20%);
+$color-secondary2--darkest:   hsl(180, 90%, 10%);
 
-$color-complement--lightest:  hsl(10, 90, 70);
-$color-complement--lighter:   hsl(10, 90, 60);
-$color-complement--light:     hsl(10, 90, 50);
-$color-complement--base:      hsl(10, 90, 40);
-$color-complement--dark:      hsl(10, 90, 30);
-$color-complement--darker:    hsl(10, 90, 20);
-$color-complement--darkest:   hsl(10, 90, 10);
+$color-complement--lightest:  hsl(10, 90%, 70%);
+$color-complement--lighter:   hsl(10, 90%, 60%);
+$color-complement--light:     hsl(10, 90%, 50%);
+$color-complement--base:      hsl(10, 90%, 40%);
+$color-complement--dark:      hsl(10, 90%, 30%);
+$color-complement--darker:    hsl(10, 90%, 20%);
+$color-complement--darkest:   hsl(10, 90%, 10%);
 
 ```
 
@@ -592,7 +592,137 @@ $color-gray-0-0: #000000;
 
 ```
 
-# License
+## Semantic Colors
+Semantic colors are useful in conveying concepts like danger, failler, success and so on.
+it's about common sence of people about specefic colors, commonly we use red, green, blue,
+yellow or orange for these concepts. Saname suggests to define a set of color variables
+to maintain this colors to keep them seprate from pallet colors. we may assign a
+color of pallet to a semantic color variables or tune them based on color pallete. defining
+seprate set of variable for semantic colors help to keep track or semantic colors while 
+changing or re-tuning color pallet.
+
+```scss
+
+$color-success--lightest:  hsl(121, 90%, 70%);
+$color-success--lighter:   hsl(121, 90%, 60%);
+$color-success--light:     hsl(121, 90%, 50%);
+$color-success--base:      hsl(121, 90%, 40%);
+$color-success--dark:      hsl(121, 90%, 30%);
+$color-success--darker:    hsl(121, 90%, 20%);
+$color-success--darkest:   hsl(121, 90%, 10%);
+
+$color-info--lightest:  hsl(200, 90%, 70%);
+$color-info--lighter:   hsl(200, 90%, 60%);
+$color-info--light:     hsl(200, 90%, 50%);
+$color-info--base:      hsl(200, 90%, 40%);
+$color-info--dark:      hsl(200, 90%, 30%);
+$color-info--darker:    hsl(200, 90%, 20%);
+$color-info--darkest:   hsl(200, 90%, 10%);
+
+$color-warning--lightest:  hsl(38, 90%, 70%);
+$color-warning--lighter:   hsl(38, 90%, 60%);
+$color-warning--light:     hsl(38, 90%, 50%);
+$color-warning--base:      hsl(38, 90%, 40%);
+$color-warning--dark:      hsl(38, 90%, 30%);
+$color-warning--darker:    hsl(38, 90%, 20%);
+$color-warning--darkest:   hsl(38, 90%, 10%);
+
+$color-danger--lightest:  hsl(1, 90%, 70%);
+$color-danger--lighter:   hsl(1, 90%, 60%);
+$color-danger--light:     hsl(1, 90%, 50%);
+$color-danger--base:      hsl(1, 90%, 40%);
+$color-danger--dark:      hsl(1, 90%, 30%);
+$color-danger--darker:    hsl(1, 90%, 20%);
+$color-danger--darkest:   hsl(1, 90%, 10%);
+
+```
+
+## Brand Colors
+Sometimes Branding Colors may differ from color pallet in such cases we should define branding colors
+as variable, like pallet colors branding colors may include several shades.
+
+``` scss
+
+$color-brandGreen--lightest:  hsl(121, 90%, 70%);
+$color-brandGreen--lighter:   hsl(121, 90%, 60%);
+$color-brandGreen--light:     hsl(121, 90%, 50%);
+$color-brandGreen--base:      hsl(121, 90%, 40%);
+$color-brandGreen--dark:      hsl(121, 90%, 30%);
+$color-brandGreen--darker:    hsl(121, 90%, 20%);
+$color-brandGreen--darkest:   hsl(121, 90%, 10%);
+
+```
+
+## Z-index Scale
+Z-index values can go out of control very easily. Even in small projects z-index headache is common.
+Setting arbitrary numbers on z-index and inspecting everything to make sure everything is working
+is'nt scalable even on small projects. Defining all z-index values in a single file can help us to
+keep an eye on all layers and their situation relative to each other. 
+based on [this article](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06#.c6i9flixv)
+every z-index value should be defined in z-index file using following syntax:
+
+```scss
+$zIndex-level--componentName[__elementName[--modifierName]|[--modifierName]]
+```
+   
+Level is a number between 1 and 10 that refers to teen private levels of z-index. they are private
+variables in z-index scale file and should't be use directly out side of that file.
+
+An example from one of my latest projects:
+```scss
+// provide bird eye view of all layers
+
+// Z-Index Scale (private vars)
+// --------------------------------------------------
+$zIndex-1:   100;
+$zIndex-2:   200;
+$zIndex-3:   300;
+$zIndex-4:   400;
+$zIndex-5:   500;
+$zIndex-6:   600;
+$zIndex-7:   700;
+$zIndex-8:   800;
+$zIndex-9:   900;
+$zIndex-10: 1000; // level 10 reserved for debuging and tools
+
+
+// Z-Index Applications (module based)
+// syntax :
+// $zIndex-level--componentName[__elementName[--modifierName]|[--modifierName]]: 
+//   $levelVar + aTuningNumber;
+// --------------------------------------------------
+// Examples :
+$zIndex-1--header:                          $zIndex-1 + 6;
+$zIndex-1--nav__dropDown:                   $zIndex-1 + 5;
+$zIndex-1--nav__nav:                        $zIndex-1 + 6;
+$zIndex-1--homeIntro__container:            $zIndex-1;
+$zIndex-1--highlightedCompany__gradient:    $zIndex-1 + 1;
+$zIndex-1--highlightedCompany__darkLayer:   $zIndex-1 + 2;
+$zIndex-1--highlightedCompany__banner:      $zIndex-1;
+$zIndex-1--highlightedCompany__meta:        $zIndex-1 + 3;
+$zIndex-1--instantFeedback:                 $zIndex-1 + 4;
+$zIndex-1--flashMessage:                    $zIndex-1;
+$zIndex-1--secondaryHeader__fakeBackLayer:  $zIndex-1 + 1;
+$zIndex-1--secondaryHeader__container:      $zIndex-1;
+$zIndex-1--box__inactiveModal:              $zIndex-1 + 50;
+$zIndex-1--box__inactiveOverlay:            $zIndex-1 + 45;
+$zIndex-1--header__branding:                $zIndex-1;
+$zIndex-1--companyHeader__logoLink:         $zIndex-1 + 4;
+$zIndex-1--searchBox__clear:                $zIndex-1 + 1;
+
+$zIndex-2--mobileView:                      $zIndex-2;
+                                            
+$zIndex-5--moveUp:                          $zIndex-5;
+                                            
+$zIndex-9--stickyCta:                        $zIndex-9;
+$zIndex-9--modal:                            $zIndex-9 + 1;
+                                            
+$zIndex-10--breakPointsViewer:              $zIndex-10;
+
+```
+
+# License 
+
  
  (The MIT License)
  
