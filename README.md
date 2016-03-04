@@ -53,12 +53,12 @@ you should get the core principles and implement them in your projects as suits 
 22. Z-index Scale
 23. Typography
 24. Limiting preprocessors features
-25. Nesting
+25. Selector Nesting
 26. Loops & Branching
 27. Mixins
 28. Extend
 29. Vendors
-30. Vendors Override
+30. Overrideing Vendors
 31. Legacy styles 
 32. Shame styles
 33. Reset styles
@@ -720,6 +720,184 @@ $zIndex-9--modal:                            $zIndex-9 + 1;
 $zIndex-10--breakPointsViewer:              $zIndex-10;
 
 ```
+
+## Typography
+Typography has a primary role in good web design, Typography can make or break a design. being in
+control of typography is a key point, defining scale variables for typography properties like font-size
+font-weight, line-height, letter spacing and font-family can help a lot in maintaining and retuning typography.
+
+Always limit number of fonts to maximum of two font faces, usually a sans type face and a sans-serif,
+sometimes you may need a mono-space type for numeric counters or tables, code snippets and thing
+like that.
+ 
+You may need to have more control on some specefic properties like font-size and font-weight and font-style by defining
+mixins. Check font-weight mixin [example](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06)
+ 
+You should always use typography scale variables/mixins to assign to typography properties. 
+
+```scss
+// font-familly variables example
+$fontFamily-sansSerif:  "Iran Sans Web";
+$fontFamily-serif:  "Iran Sans Web"; // we haven't serif at all!
+
+// font-size scale variables example
+$fontSize-base:          14px; // body
+$fontSize-large:         18px;
+$fontSize-small:         12px;
+$fontSize-tiny:          11px;
+$fontSize-jombo:         50px;
+
+$fontSize-h1:            36px;
+$fontSize-h2:            30px;
+$fontSize-h3:            24px;
+$fontSize-h4:            18px;
+$fontSize-h5:            14px;
+$fontSize-h6:            12px;
+
+// font-weight scale variables
+$fontWeight-ultralight: 200;
+$fontWeight-light: 300;
+$fontWeight-normal: 400;
+$fontWeight-medium: 500;
+$fontWeight-bold: 700;
+```
+
+```less
+// line-height and letter-spacing scale variables nameing example from medium 
+// https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06
+@lineHeight-tightest
+@lineHeight-tighter
+@lineHeight-tight
+@lineHeight-baseSans
+@lineHeight-base
+@lineHeight-loose
+@lineHeight-looser
+
+@letterSpacing-tightest
+@letterSpacing-tighter
+@letterSpacing-tight
+@letterSpacing-normal
+@letterSpacing-loose
+@letterSpacing-looser
+```
+
+## Limiting preprocessors features
+CSS is a simple and declarative language so every language that compiles to css should be
+simple to read and write. preprocessor languages like sass, less and others goal is solving
+CSS language issues.
+
+I refer to [Hugo Giraudel](http://hugogiraudel.com/) quote on [SASS Guidlin](http://sass-guidelin.es/)
+> Meanwhile, CSS is a simple language. Sass, being intended to write CSS, should not get
+much more complex than regular CSS. The KISS principle (Keep It Simple Stupid) is
+key here and may even take precedence over the DRY principle (Don’t Repeat Yourself)
+in some circumstances.
+
+Some features like variable and small simple functions are the most useful and harmless
+features of preprocessors. Other should be used carefully.   
+
+## Selector Nesting
+Selector Nesting is one of the most popular features of preprocessors. Selector Nesting lets
+us to write a selector inside another.
+
+```scss
+.foo{
+    .bar{
+    }
+}
+```
+compiles to:
+```css
+.foo .bar{}
+```
+
+Selector Nesting can be useful, but often can make more issus than solves.
+
+1. it makes codebase unsearchable
+2. it makes code less easy to read
+3. it can inceress use of descendant selector and decress modularity
+
+To read more about this, check [Sass Guidlin](http://sass-guidelin.es/) and it's refrences on 
+[these](http://www.sitepoint.com/beware-selector-nesting-sass/)
+[good](http://thesassway.com/beginner/the-inception-rule)
+[articles](http://thesassway.com/intermediate/avoid-nested-selectors-for-more-modular-css) 
+ 
+We should limit selector nesting by following roules
+
+1. limit selector nesting to a maximum level .e.g 4
+2. limit selector nesting to pseudo-classes, pseudo-elements, state classes to keep everything
+ about a component/selector in one place
+3. limit use of selector nesting and descendant selectors necessery cases    
+
+## Loops & Branching
+Loops and conditional statement are not for everyday use. theses features are useful in complex
+codes like libraries and framework. we should limit use of them as much as possible. keep readability
+simplicity in mind, Reading 10 selectors is much simpler than reading a loop, but writing a loop to 
+generate 100 selectors is resunable, alghough before doing this we should think why we need 100 selectors
+may be we're doing something wrong.
+
+## Mixins
+Mixins are similar to partials in templating languages. Mixins are powerful enough to take care about 
+Mixins abuse. Try not to write complex mixins, keep them small and simple. over using mixins
+can inceress stylesheet size because every single call of a mixin is equal to repeat all the mixin code
+in compiled css. Use css classes as reusable units instead of mixins when ever is it possiable and
+resonable for you, it's not about zero or one, you should keep a balance and choose when use mixins vs
+classes
+
+## Extend
+Extending in preprocessors is a powerful feature an very promising, but also has many problems.
+
+Sanam strongly recommands to avoid using extend, it has more pain than gain.
+
+1. Extending is not easy to read and understand, extending is invisible as Hugo Giraudel 
+ [explains](http://www.sitepoint.com/avoid-sass-extend/).
+2. Extending output is not so predictable in teamwork or when extending from libraries and frameworks 
+3. Extending output is less readable
+4. Extending can result in unusual large selectors
+5. Extending doesn’t work across media queries
+6. Extending doesn’t necessarily help file weight
+
+Hugo Giraudel explained it well on [this post](http://www.sitepoint.com/avoid-sass-extend/).
+
+Harry Roberts on [his article](http://csswizardry.com/2014/11/when-to-use-extend-when-to-use-a-mixin/) said:
+ 
+> If you are definitely, completely set on using @extend:
+
+1. Please reconsider.
+2. Use the placeholder hack.
+3. Keep an eye on your output.
+
+## Vendors
+Most of projects uses 3rd parity libraries and framework, using a package manger to keep our dependacies
+out of our source code is good idea, it can fasiliate updating dependancies and prevent everybody on team
+from editing dependancy source code.
+
+## Overriding Vendors
+Often we need to override vendors default styles, we should avoid editing dependacies source code.
+overriding can happen using vendor configs or by applying some css rules to override vendor css rules 
+
+## Legacy styles
+Sometimes, for example in a refactoring phase, we may have some old unconventional stylesheet which intended
+to be refactored and removed later. we keep this type of styles in a specefic place, a file or a set of files
+in a directory, when ever we have time to resume refactoring, we know where are old code and every body on team
+knows these styles are matter to refactor and removal and any new code shouldn't developed based on them. 
+
+## Shame styles
+Sometimes in a force of time or other limitaions we write unconventional hacky code, we keep these 
+type of codes in a specefic place, usually shame file to refactor them, every team member knows codes in
+this file are temporarey hacks that should be fixed and should not develop new code based on them.
+
+The differance between legacy styles and shame styles is about time, legacy styles are old styles
+during a huge style refactor phase. we do not develop legacy style. they're legacy, but shame styles
+are force codes that should be refactored and may happen in any time of project life time not a major refactor
+
+## Reset styles
+A group of styles that are responsible to define default styles of html document.
+Most of projects and frameworks use normalize css or reset css, but always there are
+some small things we should do in addition to using reset libraries so it's useful to 
+consider a place like a file for reseting styles.
+
+## Big Picture of Directory structure
+
 
 # License 
 
