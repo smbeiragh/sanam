@@ -62,9 +62,10 @@ you should get the core principles and implement them in your projects as suits 
 31. Legacy styles 
 32. Shame styles
 33. Reset styles
-34. Big Picture of Directory structure
-35. Documentation
-36. Common Sense 
+34. Environment variables
+35. Big Picture of Directory structure
+36. Documentation
+37. Common Sense 
 
 # About Author
 My name is Sajjad M.Beiraghdar, I'm 30 Year old Frontend developer & UX Designer 
@@ -826,12 +827,12 @@ We should limit selector nesting by following roules
 1. limit selector nesting to a maximum level .e.g 4
 2. limit selector nesting to pseudo-classes, pseudo-elements, state classes to keep everything
  about a component/selector in one place
-3. limit use of selector nesting and descendant selectors necessery cases    
+3. limit use of selector nesting and descendant selectors to necessary cases    
 
 ## Loops & Branching
 Loops and conditional statement are not for everyday use. theses features are useful in complex
 codes like libraries and framework. we should limit use of them as much as possible. keep readability
-simplicity in mind, Reading 10 selectors is much simpler than reading a loop, but writing a loop to 
+and simplicity in mind, Reading 10 selectors is much simpler than reading a loop, but writing a loop to 
 generate 100 selectors is resunable, alghough before doing this we should think why we need 100 selectors
 may be we're doing something wrong.
 
@@ -896,9 +897,98 @@ Most of projects and frameworks use normalize css or reset css, but always there
 some small things we should do in addition to using reset libraries so it's useful to 
 consider a place like a file for reseting styles.
 
+## Environment variables
+Sometimes we need different configs for development and productions environments.
+for example we need to show breakpoints on development but hide it on production. it's possible
+to acchive this using include path to force env variable files resolve to different versions for
+defferent environments.
+
+
+
 ## Big Picture of Directory structure
+To organize our code in a manageable code having a resunable and predictable directory/files structure
+is nessessary. Sanam Suggests following structure as an example. this structure is just a recommandation
+ as a starting point, we should addobt it for our projects.
 
+/
+|-- /base
+|   |-- base // import all variables
+|   |-- vars // unclassified variables 
+|   |-+ /vendors // config variables of frameworks and libraries
+|   |   |- framework1
+|   |   |- ...
+|   |   |- frameworkN
+|   |
+|   |-- colors // color variables
+|   |-- breakpoints // responsive breakpoints variables
+|   |-- typography // typography scale variables
+|   |-- z_index // z-index variables
+|   |-+ /env_prod
+|   |   |-- env // production env variables
+|   |
+|   |-+ /env_dev
+|       |-- env // development env variables
+|
+|-+ mixins //
+|   |-+ modules       
+|   |   |-- module1 // module1 mixins
+|   |   |-- ...
+|   |   |-- moduleN
+|   |
+|   |-- all // all mixins in a file or set of directories
+|
+|-+ utills
+|   |-- display // display utils none/block/inline .etc
+|   |-- text // text color/alignment/size utill clasess
+|   |-- padding // padding util classes
+|   |-- margin // margin util classes
+|   |-- general // other util classes .e.g vertical align
+|   |-- all // imports all util classes
+|
+|-+ legacy // legacy styles
+|
+|-+ vendor_override // a mean to override 3rd party styles
+|
+|-+ layouts // layouts styles
+|   |-- default_layout
+|
+|-+ layout_object // layout objects styles
+|   |-- sticky_footer          
+|
+|-+ objects // objects styles
+|   |-- object_1
+|   |-- ...
+|   |-- object_n
+|
+|-+ modules // modules styles
+|   |-- module_1
+|   |-- ...
+|   |-- module_n
+|
+|-+ pages // page level styles
+|   |-- about
+|   |-- ...
+|   |-- home
+|
+|-- _reset // reset styles
+|-- _typography // type face definitions
+|-- _shame // shame styles
+|-- main // main entry point of our style. import all styles
 
+## Documentation
+Sanam styles are realy transparent and generally there should not be any worries about documentaions.
+All we neeed is a bit of comments. Having a style guide as list of modules/objects and their capablilites
+can help to remember what modules/objects we have out of box it also promotes reusability of exisitng
+modules and objects.
+
+## Common Sense     
+coding itself is not a goal a it's a mean to achive a goal which is developing projects in shedule and
+budget. Sanam is just a set of best practicess I have read or learned from my experiences. You can and
+you should adobt it to your need. if You feel some parts are useless for you, you should put the aside
+or it may you fell you need some other namespaces or names and naming conventions. for example you may
+define t namespace as css transition and animations. feel free to develop new concepts but it's better
+to test new ideas in pet projects not a product one!
+        
 # License 
 
  
