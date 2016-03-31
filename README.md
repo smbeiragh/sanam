@@ -910,70 +910,73 @@ To organize our code in a manageable code having a resunable and predictable dir
 is nessessary. Sanam Suggests following structure as an example. this structure is just a recommandation
  as a starting point, we should addobt it for our projects.
 
+<pre>
 /  
-|-- /base  
-|   |-- base // import all variables  
-|   |-- vars // unclassified variables  
-|   |-+ /vendors // config variables of frameworks and libraries  
-|   |   |- framework1  
+|-- base  
+|   |-- _base.scss            // import all variables  
+|   |-- _vars.scss            // unclassified variables  
+|   |-+ vendors               // config variables of frameworks and libraries  
+|   |   |- _framework1.scss  
 |   |   |- ...  
-|   |   |- frameworkN  
+|   |   |- _frameworkN.scss  
 |   |  
-|   |-- colors // color variables  
-|   |-- breakpoints // responsive breakpoints variables  
-|   |-- typography // typography scale variables  
-|   |-- z_index // z-index variables  
-|   |-+ /env_prod  
-|   |   |-- env // production env variables  
+|   |-- _colors.scss          // color variables  
+|   |-- _breakpoints.scss     // responsive breakpoints variables  
+|   |-- _typography.scss      // typography scale variables  
+|   |-- _z_index.scss         // z-index variables  
+|   |-+ env_prod  
+|   |   |-- _env.scss         // production env variables  
 |   |  
-|   |-+ /env_dev  
-|       |-- env // development env variables  
+|   |-+ env_dev  
+|       |-- _env.scss         // development env variables  
 |  
 |-+ mixins //  
 |   |-+ modules  
-|   |   |-- module_1 // module1 mixins  
+|   |   |-- _module_1.scss    // module1 mixins  
 |   |   |-- ...  
-|   |   |-- module_n  
+|   |   |-- _module_n.scss   
 |   |  
-|   |-- all // all mixins in a file or set of directories  
+|   |-- _all.scss             // all mixins in a file or set of directories  
 |  
 |-+ utills  
-|   |-- display // display utils none/block/inline .etc  
-|   |-- text // text color/alignment/size utill clasess  
-|   |-- padding // padding util classes  
-|   |-- margin // margin util classes  
-|   |-- general // other util classes .e.g vertical align  
-|   |-- all // imports all util classes  
+|   |-- _display.scss         // display utils none/block/inline .etc  
+|   |-- _text.scss            // text color/alignment/size utill clasess  
+|   |-- _padding.scss         // padding util classes  
+|   |-- _margin.scss          // margin util classes  
+|   |-- _general.scss         // other util classes .e.g vertical align  
+|   |-- _all.scss             // imports all util classes  
 |  
-|-+ legacy // legacy styles  
+|-+ legacy                    // legacy directory/files styles  
 |  
-|-+ vendor_override // a mean to override 3rd party styles  
+|-+ vendor_override           // a mean to override 3rd party styles
+|   |-- _bootstrap_override.scss  
 |  
-|-+ layouts // layouts styles  
-|   |-- default_layout  
+|-+ layouts                   // layouts styles  
+|   |-- _default_layout.scss  
 |  
-|-+ layout_object // layout objects styles  
-|   |-- sticky_footer  
+|-+ layout_object             // layout objects styles  
+|   |-- _sticky_footer.scss  
 |  
-|-+ objects // objects styles  
-|   |-- object_1  
+|-+ objects                   // objects styles  
+|   |-- _object_1.scss  
 |   |-- ...  
-|   |-- object_n  
+|   |-- _object_n.scss  
 |  
-|-+ modules // modules styles  
-|   |-- module_1  
+|-+ modules                   // modules styles  
+|   |-- _module_1.scss  
 |   |-- ...  
-|   |-- module_n  
+|   |-- _module_n.scss  
 |  
-|-+ pages // page level styles  
-|   |-- about  
+|-+ pages                     // page level styles  
+|   |-- _about.scss  
 |   |-- ...  
-|   |-- home  
+|   |-- _home.scss  
 |
-|-- _reset // reset styles  
-|-- _typography // type face definitions  
-|-- _shame // shame styles  
-|-- main // main entry point of our style. import all styles  
+|-- _reset.scss               // reset styles  
+|-- _typography.scss          // type face definitions  
+|-- _shame.scss               // shame styles  
+|-- main.scss                 // main entry point of our style. import all styles
+</pre>  
 
 ## Documentation
 Sanam styles are realy transparent and generally there should not be any worries about documentaions.
