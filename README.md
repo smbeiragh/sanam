@@ -910,70 +910,70 @@ To organize our code in a manageable code having a resunable and predictable dir
 is nessessary. Sanam Suggests following structure as an example. this structure is just a recommandation
  as a starting point, we should addobt it for our projects.
 
-/
-|-- /base
-|   |-- base // import all variables
-|   |-- vars // unclassified variables 
-|   |-+ /vendors // config variables of frameworks and libraries
-|   |   |- framework1
-|   |   |- ...
-|   |   |- frameworkN
-|   |
-|   |-- colors // color variables
-|   |-- breakpoints // responsive breakpoints variables
-|   |-- typography // typography scale variables
-|   |-- z_index // z-index variables
-|   |-+ /env_prod
-|   |   |-- env // production env variables
-|   |
-|   |-+ /env_dev
-|       |-- env // development env variables
+/  
+|-- /base  
+|   |-- base // import all variables  
+|   |-- vars // unclassified variables  
+|   |-+ /vendors // config variables of frameworks and libraries  
+|   |   |- framework1  
+|   |   |- ...  
+|   |   |- frameworkN  
+|   |  
+|   |-- colors // color variables  
+|   |-- breakpoints // responsive breakpoints variables  
+|   |-- typography // typography scale variables  
+|   |-- z_index // z-index variables  
+|   |-+ /env_prod  
+|   |   |-- env // production env variables  
+|   |  
+|   |-+ /env_dev  
+|       |-- env // development env variables  
+|  
+|-+ mixins //  
+|   |-+ modules  
+|   |   |-- module_1 // module1 mixins  
+|   |   |-- ...  
+|   |   |-- module_n  
+|   |  
+|   |-- all // all mixins in a file or set of directories  
+|  
+|-+ utills  
+|   |-- display // display utils none/block/inline .etc  
+|   |-- text // text color/alignment/size utill clasess  
+|   |-- padding // padding util classes  
+|   |-- margin // margin util classes  
+|   |-- general // other util classes .e.g vertical align  
+|   |-- all // imports all util classes  
+|  
+|-+ legacy // legacy styles  
+|  
+|-+ vendor_override // a mean to override 3rd party styles  
+|  
+|-+ layouts // layouts styles  
+|   |-- default_layout  
+|  
+|-+ layout_object // layout objects styles  
+|   |-- sticky_footer  
+|  
+|-+ objects // objects styles  
+|   |-- object_1  
+|   |-- ...  
+|   |-- object_n  
+|  
+|-+ modules // modules styles  
+|   |-- module_1  
+|   |-- ...  
+|   |-- module_n  
+|  
+|-+ pages // page level styles  
+|   |-- about  
+|   |-- ...  
+|   |-- home  
 |
-|-+ mixins //
-|   |-+ modules       
-|   |   |-- module1 // module1 mixins
-|   |   |-- ...
-|   |   |-- moduleN
-|   |
-|   |-- all // all mixins in a file or set of directories
-|
-|-+ utills
-|   |-- display // display utils none/block/inline .etc
-|   |-- text // text color/alignment/size utill clasess
-|   |-- padding // padding util classes
-|   |-- margin // margin util classes
-|   |-- general // other util classes .e.g vertical align
-|   |-- all // imports all util classes
-|
-|-+ legacy // legacy styles
-|
-|-+ vendor_override // a mean to override 3rd party styles
-|
-|-+ layouts // layouts styles
-|   |-- default_layout
-|
-|-+ layout_object // layout objects styles
-|   |-- sticky_footer          
-|
-|-+ objects // objects styles
-|   |-- object_1
-|   |-- ...
-|   |-- object_n
-|
-|-+ modules // modules styles
-|   |-- module_1
-|   |-- ...
-|   |-- module_n
-|
-|-+ pages // page level styles
-|   |-- about
-|   |-- ...
-|   |-- home
-|
-|-- _reset // reset styles
-|-- _typography // type face definitions
-|-- _shame // shame styles
-|-- main // main entry point of our style. import all styles
+|-- _reset // reset styles  
+|-- _typography // type face definitions  
+|-- _shame // shame styles  
+|-- main // main entry point of our style. import all styles  
 
 ## Documentation
 Sanam styles are realy transparent and generally there should not be any worries about documentaions.
