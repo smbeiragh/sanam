@@ -4,7 +4,8 @@
 **Sanam, A minimal and flexible approach to developing maintainable & large scalable stylesheet.**
 
 Sanam is a Style Convection based on some of the best practices, methods, articles
-and current style guides. Sanam goal is to provide a set of conventions that lets programmers achieve following goals.
+and existing style guides. Sanam goal is to provide a set of conventions that lets
+programmers achieve following goals.
 
 1. clean well structured and transparent code
 2. highly reusable code
@@ -17,67 +18,67 @@ Sanam borrows some of it’s main Ideas and features from following resources:
 - Namespaces idea from [Harry Roberts Article](http://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
 - [BEM](https://en.bem.info/) css nameing convention as component/module pattern convention
 - Variables and scale variables idea from [Fat's Article on Medium](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06)
-- General idea of directory structure & the 7-1 pattern from [Sass Guidelines](http://sass-guidelin.es/)
+- General idea of directory structure & the (n-1)7-1 pattern from [Sass Guidelines](http://sass-guidelin.es/)
 - Limiting preprocessors features Based on numerous articles including [(1)](http://csswizardry.com/2012/05/keep-your-css-selectors-short/)[(2)](http://thesassway.com/intermediate/avoid-nested-selectors-for-more-modular-css)[(3)](http://www.sitepoint.com/avoid-sass-extend/)
 - Some other articles from [This Repo](https://github.com/davidtheclark/scalable-css-reading-list) that I will mention. 
 
 Sanam documentary is based on SASS-Lang, but it can be adopted to be used with conjunction
-of any preprocessor language or even pure css using postprocessors or task runners.
+of any preprocessor language or may be pure css using postprocessors or task runners.
 Suggesting a collection of best practices is the goal of Sanam, Sanam Style Convention
 does not provide any code or framework for specific language or any opinionated structure,
 you should get the core principles and implement them in your projects as suits your situation.
 
 # Table Of Contents
 1. [About Author](#about-author)
-2. Namespaces
-3. Util Classes
-4. Scoping
-5. Theme Classes
-6. State Classes
-7. Javascript Classes
-8. Testing Classes
-9. Hack Classes
-10. Objects
-11. Component/Modules
-12. Layouts
-13. Layout Level Objects
-14. Page Level Styles
-15. Modular Pattern
-16. Responsive
-17. Variables
-18. Colors
-19. Color Pallet
-20. Gray Shades
-21. Semantic Colors
-22. Brand Colors
-22. Z-index Scale
-23. Typography
-24. Limiting preprocessors features
-25. Selector Nesting
-26. Loops & Branching
-27. Mixins
-28. Extend
-29. Vendors
-30. Overrideing Vendors
-31. Legacy styles 
-32. Shame styles
-33. Reset styles
-34. Environment variables
-35. Big Picture of Directory structure
-36. Documentation
-37. Common Sense 
+2. [Namespaces](#namespaces)
+3. [Utility Classes](#utility-classes)
+4. [Scoping Classes](#scoping-classes)
+5. [Theme Classes](#theme-classes)
+6. [State Classes](#state-classes)
+7. [Javascript Classes](#javascript-classes)
+8. [Testing Classes](#testing-classes)
+9. [Hack Classes](#hack-classes)
+10. [Objects](#objects-classes)
+11. [Components/Modules](#components-modules-classes)
+12. [Layouts](#layout-classes)
+13. [Layout Level Objects](#layout-level-objects)
+14. [Page Level Styles](#page-level-styles)
+15. [Modular Pattern](#modular-pattern)
+16. [Responsive](#responsive)
+17. [Variables](#variables)
+18. [Colors](#colors)
+19. [Color Pallet](#color-pallet)
+20. [Gray Shades](#gray-shades)
+21. [Semantic Colors](#semantic-colors)
+22. [Brand Colors](#brand-colors)
+22. [Z-index Scale](#z-index-scale)
+23. [Typography](#typography)
+24. [Limiting preprocessors features](#limiting-preprocessors-features)
+25. [Selector Nesting](#sselector-nesting)
+26. [Loops & Branching](#loops-branching)
+27. [Mixins](#mixins)
+28. [Extend](#extend)
+29. [Vendors](#vendors)
+30. [Overriding Vendors](#overriding-vendors)
+31. [Legacy styles](#legacy-styles) 
+32. [Shame styles](#shame-styles)
+33. [Reset styles](#reset-styles)
+34. [Environment variables](#environment-variables)
+35. [Big Picture of Directory structure](#big-picture-of-directory-structure)
+36. [Documentation](#documentation)
+37. [Common Sense](#common-sense) 
 
 # About Author
-My name is Sajjad M.Beiraghdar, I'm 30 Year old Frontend developer & UX Designer 
-and former FullStack Developer From Tehran,Iran.
-I'm currently working in Jobinja.ir as Co-Founder and Frontend Developer.
-I began Programing since 1998 as a kid. Currently I have 5 years of professional experience,
+My name is Sajjad M.Beiraghdar, I'm 30 Year old Front-end developer & UX Designer 
+and former Full Stack Developer From Tehran,Iran.
+I'm currently working in Jobinja.ir as UX Designer and Front-end Developer.
+I began Programming since 1998 as a kid. Currently I have 5 years of professional experience,
 working with professional companies and talent people. I worked on several real world enterprise projects
-with ten thousand LOC of poorly maintained CSS and Javascript and everybody on the team would touch CSS regularly.
+with ten thousand LOC of poorly maintained CSS and JavaScript and everybody on the team would touch CSS regularly.
 Sanam is the outcome of my effort to establish a style convention in my former company.
 After reading lots of articles & methodologies I conducted this convention,
 Sanam is a subset and un-opinionated version of that effort.
-I used this convention on several project with major refactors and the results was like magic. 
+I used this convention on several project with major refactor and the results was like magic. 
 After few weeks we had a clean, easy to read and modify large code base!
 I strongly recommend Sanam Style Convention for new projects. It helps you to keep your code clean 
 and easy to maintain and modify even with newcomer team members. Every body how get familiar with convention
@@ -87,7 +88,7 @@ detect broken styles during refactor can help a lot.
 
 # Namespaces
 The main reason of lacking an easy to read and maintain codebase in scale is lack of clarity and
-confidence, people aren’t confident what are the side effects of modifying a selector,
+confidence, people arn’t confident what are the side effects of modifying a css rule,
 what does a selector and what are it’s use cases as a result we afraid to touch old codes so we start to
 avoid touching them and adding new selectors for every change, soon it will end up to more and
 more selectors that nobody knows what each one does. So we have to spend most of our time on reading old 
@@ -100,9 +101,9 @@ As Harry Roberts said in his [article](http://csswizardry.com/2015/03/more-trans
 So should we provide lengthy documentation on every single class and selector?
 A good code is a self documentary code. Meaningful classes are the the answer.
 By using namespaces we’re able to communicate useful information about classes to other developers
-just by the class name itself right in html.
+just by the class name itself right in html or css code.
 
-> *Namespace*: namespaces are one or more character at the beginning of class and are separated from
+> *Namespace*: namespaces are one or more character at the beginning of class name and are separated from
 > other parts of class names using hyphen (-) 
 
 *Example of Namespace*
@@ -122,15 +123,15 @@ begins with ‘u’ namespace and this telling us several useful information.
 5. we should not bind on it, for example writing a selector like ‘.some-class .u-pullLeft’
 
 Sanam Style Convention suggests twelve different name spaces as following. You can adopt your own set of
-name spaces to fit your work, keeping in mind 1)each namespace should have a specefic nad simple to understand goal
+name spaces to fit your work, keeping in mind 1)each namespace should have a specific and simple to understand goal
 and 2)keep numbers of namespaces small as small possible   
 
 ## Utility Classes (u-)
 Utility classes are simple classes with a specific small task. Common examples of
 this type of classes are floating, clearFix, text alignment classes. these classes are
 reusable and can be used anywhere and should not be bound onto or changed, they can be added
-anywhere and remove to do their small specific task without any side effect, they should not
-participate in other selectors, this is the meaning of not bounding onto them.
+anywhere and remove to do their small specific task *without any side effect*, they should not
+participate in other selectors, this is the meaning of not bounding on to them.
 
 Utility classes name space is **u-** 
 
@@ -147,8 +148,9 @@ Utility classes name space is **u-**
 ```
 
 ## Scoping Classes (s-)
-Scoping classes lets to define a scope of DOM whit special styles, .e.g in content manage management system, dynamic contents like post and pages
-can be considered as content scope, under content scope we can setup a custom typography, styling headings, paragraphes etc.
+Scoping classes lets to define a scope of DOM whit special styles, .e.g in content manage management
+system, dynamic contents like post and pages can be considered as content scope, under content scope
+we can setup a custom typography, styling headings, paragraphs etc.
 These classes can lead to pure css codes and should be used wisely and limited. 
 
 ```css
@@ -159,7 +161,8 @@ These classes can lead to pure css codes and should be used wisely and limited.
 ```
 
 ## Theme Classes (t-)
-Template classes like Scoping classes are a mean to define a scope of DOM for cosmetic changes, They used typicaly in style switchers.
+Template classes like Scoping classes are a mean to define a scope of DOM, in this case for
+cosmetic changes. This type of class used typically in style switchers.
 
 ``` css
 /* the main header of page in sky theme */
@@ -169,7 +172,8 @@ Template classes like Scoping classes are a mean to define a scope of DOM for co
 ```
  
 ## State Classes (is-, has-)
-State classes define a pice of UI in a temporarey specified state or condition, e.g. is-hidden, is-selected, is-disabled, .etc  
+State classes define a piece of UI in a temporary specified state or condition,
+e.g. is-hidden, is-selected, is-disabled, .etc  
 As Harry Roberts says:
 >It tells us that the DOM currently has a temporary, optional, or short-lived style applied to it due to a certain state being invoked.
 
@@ -182,22 +186,25 @@ As Harry Roberts says:
  
 ## Javascript Classes (js-)
 These classes are javascript hooks to DOM. Styles should not be bound onto these classes,
-they tell developer this class is a javascript hook and should not be removed or changed or bound on to it or rely on them. 
+they tell developer this class is a javascript hook and should not be removed or changed
+or bound on to or rely on them. 
 
 ## Javascript Classes (qa-)
-These classes like js classes are hooks to DOM for test frameworks and tools. Like js classes they should not be bound on to or
-apply styles on them.
+These classes like js classes are hooks to DOM for test tools. Like js classes shouldn't 
+be bound on to or apply styles on them.
 
 ## Hack Classes (_)
-These classes are the worst classes, hack. sometimes we need to apply a class on DOM to force something to work.
-We need to tell this class is less than ideal as is temporary.
+These classes are the worst classes, they're quick fixes and hacks. sometimes we need to
+apply a class on DOM to force something to work.
+We need to tell this class is less than ideal and temporary.
 
-## Object Classes (o-)
-Object classes are abstracted pure structural and none cosmetic reusable pice of UI. they may be used anywhere and 
-modifying them may have undesired side effects on many other unknown places. generaly we should avoid modifying
-them or be carefull about modifing them. Objects considered to be under open/closed principle, it means they are open 
-to extending but close to modifing. We often extend them and only modify them on major refactors.
-Sanam reacommands use of BEM methodology on this namespace.
+## Objects Classes (o-)
+Object classes are abstracted pure structural and none cosmetic reusable piece of UI.
+they may be used anywhere and modifying them may have undesired side effects on many
+other unknown places. generally we should avoid modifying them or be careful about 
+modifying them. Objects considered to follow open/closed principle, it means they are open 
+to extending but close to modifying. We often extend them and only modify them on major refactor.
+Sanam recommends use of BEM methodology on this namespace.
   
 >BEM convention will covered in section 15  
 
@@ -215,15 +222,17 @@ Examples:
 .o-widget__heading {}
 ```
 
-## Component/Module Classes (c-)
-Components are reusable pice of UI, they can represent any visual repeatitive pice of UI that anyone can
+## Components/Modules Classes (c-)
+Components are reusable piece of UI.They can represent any visual repetitive piece of UI that anyone can
 recognize them. Like buttons, dropdowns and so on. A component may have other components as children
 (composition) but a component may not extend other components but may extend an *Object*. By this limitation
-on extending, we limit modifiying side effects of a component on the modified component, it lets us to confidently
+on extending, we limit modifying side effects to modified component, it lets us to confidently
 edit that component and check all instances of that component with a simple search while finding all instance of
 several unknown components that are extending a modified component needs careful checking in markup and it can
 be a large amount of effort. In contrast to Objects, components are close to extending but open to modifying.
 like objects, component classes benefits BEM methodology.
+
+>BEM convention will covered in section 15  
   
 Format:
 ```css
@@ -241,7 +250,8 @@ Examples:
 
 ## Layout Classes (l-)
 Layout Classes are responsible for structure and cosmetic of a specific layout type in project,
-in most projects they have rare use cases. They should not be bound onto. Layout classes benefits BEM methodology.
+in most projects they have rare use cases. They should not be bound onto. Layout classes 
+benefits BEM methodology.
 
 ```css
 /* the default layout root element */
@@ -262,18 +272,20 @@ in most projects they have rare use cases. They should not be bound onto. Layout
 ```
 
 ## Layout Level Objects (lo-)
-Sometimes there are few shared common features in between different layout, like fixed footer. layout level objects
-are a mean to make this type of features reusable and encapsulated in a set of classes. Like layout classes,
-layout level object benefits BEM methodology 
+Sometimes there are few shared common features in between different layouts, like fixed footer.
+layout level objects are a mean to make this type of features reusable and encapsulated in a 
+set of classes. Like layout classes, layout level object benefits BEM methodology 
 
 ## Page Level Styles (p-)
-Sometimes we need to apply style on specefic page. in well designed component based system this can happen rarery.
-Sanam suggests to provide a top level scoping class .e.g on body or html tag using a name based on page name.
-under this scope we can override every aspect of page including components and layout. but keep in mind modifing a
-component or layout in page level can be a sign of lacking a modifier on component level or layout level and writing
-page level style generaly is not a good idea and can be lead to hard to maintain code.
-When modifing any thing, try to be explicit and don't on classes of different namespaces by defining
-classes in page level namespace.
+Sometimes we need to apply style on specific page. In well designed component based
+system this can happen rarely. Sanam suggests to provide a top level scoping class
+.e.g on body or html tag using a name based on page name. under this scope we can
+override every aspect of page including components and layout. but keep in mind modifying a
+component or layout in page level can be a sign of lacking a modifier on component
+level or layout level and writing page level style generally is not a good idea and
+can be lead to hard to maintain code. 
+When modifying any thing, try to be explicit and don't bound on classes of different
+namespaces by defining classes in page level namespace.
 
 ```css
 // the root class on body tag for scoping
@@ -295,29 +307,31 @@ classes in page level namespace.
 ```
 
 ## Modular Pattern
-Modularity lets us to organize most of our code in small reusable and easy to understand and maintain modules.
-Modularity in software brings many benefit including encapsulation, extensibility and compositions. using this
-pattern we bring the same benefits in CSS.
+Modularity lets us to organize most of our code in small reusable and
+easy to understand and maintain pieces. Modularity in software brings
+many benefit including encapsulation, extensibility and compositions.
+using this pattern we bring the same benefits in CSS.
 
 *encapsulation*: 
 every module handles all of it's aspects including it's own state, elements, modifiers and
 has noting to with other modules.
 
-1. Every module defines its own style in a seprate file
-2. A module file containes only and only styles related to one module
+1. Every module defines its own style in a separate file
+2. A module file contains only and only styles related to one module
 3. Every module has a root element which contains all elements of that module   
-4. CSS selectors of a module only includes classes of one module
+4. CSS selectors of a module only includes classes of that module
 5. Every module can be used every where independent of it's own and document DOM Structure.   
 6. A child module should not know anything about it's parent module
-7. A parent module should not know about child module
+7. A parent module should not know anything about child module
  
 *extensibility*: 
-A module can extend another module, Because of simplicity Sanam limits extending to objects.
-When two modules has same element as root element we say one is extending another. this can be considered as special
-case of compositions where parent and child are at the same level.
+A module can extend from objects, To keep maintenance simple Sanam limits extending to objects.
+When two modules has same element as root element we say one is extending another. this can
+be considered as special case of compositions where parent and child are at the same level.
 
 1. Components (modules in C namespace) can only and only extend Objects (modules in O namespace)
-2. Modules can modify base component elements/modifiers via its own module classe and not base module classes
+2. Modules can modify base component elements/modifiers via its own module classes and not base
+module classes
 
 ```html
 <!-- c-usersList extending o-list -->
@@ -348,19 +362,20 @@ not child module class
 ```
 In this example c-actionBar can modify child bottom via c-actionBar__action,
 action element my be anything and c-actionBar just know there is a
-number or action elements an noting more, similary c-actionBar can modify c-usersList root element
+number or action elements an noting more, similarly c-actionBar can modify c-usersList root element
 via c-actionBar__list, but it shouldn't modify c-userList items, because actionBar dose't know anything
 about c-usersList internals or event about its existence! if we would like to modify list it should be
-done as modifier on c-userList or event o-list to unifiy all lists in project level not based on parent
+done as modifier on c-userList or o-list to unify all lists in project level not based on parent
 component of list.
 
 There are several modular conventions including BEM, OCSS, SMACSS, DRY CSS. 
-Sanam recommands [BEM](https://en.bem.info/) as modular convention in several
- namespaces including Components (c-), Objects (o-), Layouts (l-), Layout Objects (lo-) and Page level (p-)
+Sanam recommends [BEM](https://en.bem.info/) as modular convention in several
+namespaces including Components (c-), Objects (o-), Layouts (l-), Layout Objects (lo-)
+and Page level (p-)
 
 ### Block-Element-Modifier (BEM)
-[BEM](https://en.bem.info/) is a modular convention from Russian search engine Yandex. BEM is similar to OOP and lets us to use OOP
-concepts in CSS. 
+[BEM](https://en.bem.info/) is a modular convention from Russian search engine Yandex.
+BEM is similar to OOP and lets us to use OOP concepts in CSS. 
 
 BEM has three main parts:
 
@@ -369,10 +384,10 @@ Blocks are reusable and independent units of code, also called modules,
 components and widgets. Every UI is composed of Blocks
 
 **Elements**:
-Every block or module consists of Element, for example a figure consists of captions and image element.
+Every block or module consists of Element, for example a figure consists of caption and image element.
 
 **Modifiers**:
-Modifiers are a mean to define permanent or temporary state of a module or its module element.
+Modifiers are a mean to define permanent or temporary state of a module or its module elements.
 
 BEM define a naming convention for class names as following 
 
@@ -421,15 +436,15 @@ Following principles applies to BEM
 Read More about BEM in practice in these [great](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) [articles](https://css-tricks.com/bem-101/) and [website](http://getbem.com/)  
 
 ## Responsive
-Developing responsive website using pure media queries is not scaleable even in website with few pages.
+Developing responsive website using pure media queries is not scalable even in website with few pages.
 
 1. using pure media queries is not scalable
 2. final code is not readable enough
 3. designers and developers communication is not easy
 4. changing a breakpoint is painful
 
-To address this issues, Saname recommands use of name breakpoints and an API e.g. a mixin via a pre-processor
- languages e.g SASS.
+To address this issues, Saname recommends use of named breakpoints and an API e.g. a mixin via a pre-processor
+ languages e.g. SASS.
  
 For example we can define a set of variables or a sass map as reference of named breakpoints and a mixin
 as API that gets breakpoint names or variables and writes media queries for us. we also can use libraries like
@@ -466,7 +481,7 @@ $breakpoints: (
 @include respond-to(large) { ... }
 ``` 
 
-## Variable
+## Variables
 Sanam Uses Following syntax for defining variables. all following parts are camelCase
 
 ```css
@@ -478,8 +493,8 @@ This syntax has several benefits:
 1. great auto complete by IDE, for example when you are going to set a color
  by typing color IDE will show a list of all color variable
 2. property name and value name give us a good idea about what this variable
- containes
-3. component naming part tells where this variable is used. 
+ contains
+3. component naming part tells where this variable is used if bounded to a component. 
 
 ## Colors
 Sanam Organize colors in four different categories including pallet colors, 
@@ -492,10 +507,10 @@ area can be more useful. Sanam suggests simple variables because:
 1. variables are easier to locate and search
 2. variables lets us benefit IDE auto complete
 
-hsl color format is recomanded because:
+hsl(hue, saturation, lightness) color format is recommended because:
 
 1. it's more understandable and meaningful to humans
-2. it's easer to notice un-intended color changes
+2. it's easier to notice un-intended color changes
 
 sometimes we need to create an extra shade of a defined color which is not pre
 defined in variable in such cases we can use helper function to apply a custom
@@ -504,11 +519,11 @@ may you should re-tune predefined shades or add a few more shades as predefined
 and don't let number of colors go out of control.
 
 ## Pallet Colors
-Base on colors teory there are four type color pallets.
+Base on colors theory there are four type color pallets.
 
-1. mono color with a single primary color
-2. adjacent colors and triad colors with one primary color and two secondary colors)
-3. Tetrad colors with four colors one primary color and two secondary colors plus
+1. *Mono color* with a single primary color
+2. *Adjacent colors* and *Triad colors* with one primary color and two secondary colors)
+3. *Tetrad* colors with four colors one primary color and two secondary colors plus
  a complement color
 
 Sanam define four different color name as primary, secondary1, secondary2 and a 
@@ -552,19 +567,19 @@ $color-complement--darkest:   hsl(10, 90%, 10%);
 ```
 
 ## Gray Shades
-Gray shades in most projects can get crazy very easly, Ideally having five
+Gray shades in most projects can get crazy very easily, Ideally having five
 different shades plus one white and black is enough but most designers are
 picky about color specially about gray shades. they would like to tune them
-test them and so on. this can very easily end to having about 60 gray shades
+test them and so on. this can very easily end to having lots of gray shades
 in small project. it's enough to have five or seven gray shades like pallet colors
-but if you think that's not working for you, Sanam recommand use variable names
-with color code in name. By doing this next time we try to apply a new gray
+but if you think that's not working for you, Sanam recommends useing variable names
+with color code in their name. By doing this next time we try to apply a new gray
 shade IDE will show us list of all defined shades and we can chose to add 
-a new shade of pike one of predefined shades. In case of not using IDE,
+a new shade or pike one of predefined shades. In case of not using IDE,
 preprocessor will complain about undefined variable and we will notice, then
 we can check our predefined gray variable to decide to define new variable or
 pike an old one.
-Also we can analyse gray shades useage to minimize and re-tune them later. 
+Also we can analyse gray shades usage to minimize and re-tune them later. 
 
 Example:
 ```scss
@@ -594,12 +609,12 @@ $color-gray-0-0: #000000;
 ```
 
 ## Semantic Colors
-Semantic colors are useful in conveying concepts like danger, failler, success and so on.
-it's about common sence of people about specefic colors, commonly we use red, green, blue,
+Semantic colors are useful in conveying concepts like danger, failure, success and so on.
+it's about human common sense about specific colors, commonly we use red, green, blue,
 yellow or orange for these concepts. Saname suggests to define a set of color variables
-to maintain this colors to keep them seprate from pallet colors. we may assign a
-color of pallet to a semantic color variables or tune them based on color pallete. defining
-seprate set of variable for semantic colors help to keep track or semantic colors while 
+to maintain this colors to keep them separate from pallet colors. we may assign a
+color of pallet to a semantic color variables or tune them based on color palette. defining
+separate set of variable for semantic colors help to keep track or semantic colors while 
 changing or re-tuning color pallet.
 
 ```scss
@@ -639,8 +654,9 @@ $color-danger--darkest:   hsl(1, 90%, 10%);
 ```
 
 ## Brand Colors
-Sometimes Branding Colors may differ from color pallet in such cases we should define branding colors
-as variable, like pallet colors branding colors may include several shades.
+Sometimes branding colors may differ from color pallet in such cases we should
+define branding colors as variable, like pallet colors branding colors may include
+several shades.
 
 ``` scss
 
@@ -815,16 +831,16 @@ Selector Nesting can be useful, but often can make more issus than solves.
 
 1. it makes codebase unsearchable
 2. it makes code less easy to read
-3. it can inceress use of descendant selector and decress modularity
+3. it can increase use of descendant selector and decrease modularity
 
-To read more about this, check [Sass Guidlin](http://sass-guidelin.es/) and it's refrences on 
+To read more about this, check [Sass Guidlin](http://sass-guidelin.es/) and it's references on 
 [these](http://www.sitepoint.com/beware-selector-nesting-sass/)
 [good](http://thesassway.com/beginner/the-inception-rule)
 [articles](http://thesassway.com/intermediate/avoid-nested-selectors-for-more-modular-css) 
  
-We should limit selector nesting by following roules
+We should limit selector nesting by following rules
 
-1. limit selector nesting to a maximum level .e.g 4
+1. limit selector nesting to a maximum level .e.g 3 or 4 levels
 2. limit selector nesting to pseudo-classes, pseudo-elements, state classes to keep everything
  about a component/selector in one place
 3. limit use of selector nesting and descendant selectors to necessary cases    
@@ -833,29 +849,29 @@ We should limit selector nesting by following roules
 Loops and conditional statement are not for everyday use. theses features are useful in complex
 codes like libraries and framework. we should limit use of them as much as possible. keep readability
 and simplicity in mind, Reading 10 selectors is much simpler than reading a loop, but writing a loop to 
-generate 100 selectors is resunable, alghough before doing this we should think why we need 100 selectors
+generate 100 selectors is rational, although before doing this we should think why we need 100 selectors
 may be we're doing something wrong.
 
 ## Mixins
 Mixins are similar to partials in templating languages. Mixins are powerful enough to take care about 
 Mixins abuse. Try not to write complex mixins, keep them small and simple. over using mixins
-can inceress stylesheet size because every single call of a mixin is equal to repeat all the mixin code
-in compiled css. Use css classes as reusable units instead of mixins when ever is it possiable and
-resonable for you, it's not about zero or one, you should keep a balance and choose when use mixins vs
+can increase stylesheet size because every single call of a mixin is equal to repeat all the mixin code
+in compiled css. Use css classes as reusable units instead of mixins when ever is it possible and
+reasonable for you, it's not about zero or one, you should keep a balance and choose when use mixins vs
 classes
 
 ## Extend
 Extending in preprocessors is a powerful feature an very promising, but also has many problems.
 
-Sanam strongly recommands to avoid using extend, it has more pain than gain.
+Sanam strongly recommends to avoid using extend, it has more pain than gain.
 
 1. Extending is not easy to read and understand, extending is invisible as Hugo Giraudel 
  [explains](http://www.sitepoint.com/avoid-sass-extend/).
 2. Extending output is not so predictable in teamwork or when extending from libraries and frameworks 
 3. Extending output is less readable
 4. Extending can result in unusual large selectors
-5. Extending doesn’t work across media queries
-6. Extending doesn’t necessarily help file weight
+5. Extending doesn't work across media queries
+6. Extending doesn't necessarily help file weight
 
 Hugo Giraudel explained it well on [this post](http://www.sitepoint.com/avoid-sass-extend/).
 
@@ -869,25 +885,25 @@ Harry Roberts on [his article](http://csswizardry.com/2014/11/when-to-use-extend
 
 ## Vendors
 Most of projects uses 3rd parity libraries and framework, using a package manger to keep our dependacies
-out of our source code is good idea, it can fasiliate updating dependancies and prevent everybody on team
-from editing dependancy source code.
+out of our source code is good idea, it can facilitate updating dependencies and prevent everybody on team
+from editing dependencies source code.
 
 ## Overriding Vendors
-Often we need to override vendors default styles, we should avoid editing dependacies source code.
+Often we need to override vendors default styles, we should avoid editing dependencies source code.
 overriding can happen using vendor configs or by applying some css rules to override vendor css rules 
 
 ## Legacy styles
 Sometimes, for example in a refactoring phase, we may have some old unconventional stylesheet which intended
-to be refactored and removed later. we keep this type of styles in a specefic place, a file or a set of files
+to be refactored and removed later. we keep this type of styles in a specific place, a file or a set of files
 in a directory, when ever we have time to resume refactoring, we know where are old code and every body on team
 knows these styles are matter to refactor and removal and any new code shouldn't developed based on them. 
 
 ## Shame styles
-Sometimes in a force of time or other limitaions we write unconventional hacky code, we keep these 
-type of codes in a specefic place, usually shame file to refactor them, every team member knows codes in
-this file are temporarey hacks that should be fixed and should not develop new code based on them.
+Sometimes in a force of time or other limitations we write unconventional hacky code, we keep these 
+type of codes in a specific place, usually shame file to refactor them, every team member knows codes in
+this file are temporarily hacks that should be fixed and should not develop new code based on them.
 
-The differance between legacy styles and shame styles is about time, legacy styles are old styles
+The difference between legacy styles and shame styles is about time, legacy styles are old styles
 during a huge style refactor phase. we do not develop legacy style. they're legacy, but shame styles
 are force codes that should be refactored and may happen in any time of project life time not a major refactor
 
@@ -895,20 +911,19 @@ are force codes that should be refactored and may happen in any time of project 
 A group of styles that are responsible to define default styles of html document.
 Most of projects and frameworks use normalize css or reset css, but always there are
 some small things we should do in addition to using reset libraries so it's useful to 
-consider a place like a file for reseting styles.
+consider a place like a file for reset styles.
 
 ## Environment variables
 Sometimes we need different configs for development and productions environments.
 for example we need to show breakpoints on development but hide it on production. it's possible
-to acchive this using include path to force env variable files resolve to different versions for
-defferent environments.
-
-
+to achieve this using include path to force env variable files resolve to different versions for
+different environments. But keep in mind we should use this just for tools config and our code
+should be the same in all environments.
 
 ## Big Picture of Directory structure
-To organize our code in a manageable code having a resunable and predictable directory/files structure
-is nessessary. Sanam Suggests following structure as an example. this structure is just a recommandation
- as a starting point, we should addobt it for our projects.
+To organize our code in a manageable code having a reasonable and predictable directory/files structure
+is necessary. Sanam Suggests following structure as an example. this structure is just a recommendation
+as a starting point, you should adopt it for your projects.
 
 <pre>
 /  
@@ -979,18 +994,18 @@ is nessessary. Sanam Suggests following structure as an example. this structure 
 </pre>  
 
 ## Documentation
-Sanam styles are realy transparent and generally there should not be any worries about documentaions.
-All we neeed is a bit of comments. Having a style guide as list of modules/objects and their capablilites
-can help to remember what modules/objects we have out of box it also promotes reusability of exisitng
+Sanam styles are transparent enough and generally there should not be much worries about code documenting.
+All we need is a bit of comments. Having a style guide as list of modules/objects and their capabilities
+can help to remember what modules/objects we have out of box it also promotes reusability of existing
 modules and objects.
 
 ## Common Sense     
-coding itself is not a goal a it's a mean to achive a goal which is developing projects in shedule and
-budget. Sanam is just a set of best practicess I have read or learned from my experiences. You can and
-you should adobt it to your need. if You feel some parts are useless for you, you should put the aside
+coding itself is not a goal a it's a mean to achieve a goal which is developing projects in schedule and
+budget. Sanam is just a set of best practices I have read or learned from my experiences. You can and
+you should adopt it to your own needs. if You feel some parts are useless for you, you should put it aside
 or it may you fell you need some other namespaces or names and naming conventions. for example you may
 define t namespace as css transition and animations. feel free to develop new concepts but it's better
-to test new ideas in pet projects not a product one!
+to test new ideas in pet projects not a production one!
         
 # License 
 
