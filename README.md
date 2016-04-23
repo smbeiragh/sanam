@@ -69,10 +69,10 @@ you should get the core principles and implement them in your projects as suits 
 37. [Common Sense](#common-sense) 
 
 # About Author
-My name is Sajjad M.Beiraghdar, I'm 30 Year old Front-end developer & UX Designer 
+My name is Sajjad M.Beiraghdar, I'm 29 Year old Front-end developer & UX Designer 
 and former Full Stack Developer From Tehran,Iran.
 I'm currently working in Jobinja.ir as UX Designer and Front-end Developer.
-I began Programming since 1998 as a kid. Currently I have 5 years of professional experience,
+I began Programming since 1998 as a kid. I begun my professional carer since 2011,
 working with professional companies and talent people. I worked on several real world enterprise projects
 with ten thousand LOC of poorly maintained CSS and JavaScript and everybody on the team would touch CSS regularly.
 Sanam is the outcome of my effort to establish a style convention in my former company.
