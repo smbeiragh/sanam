@@ -251,7 +251,7 @@ like objects, component classes benefits BEM methodology.
   
 Format:
 ```css
-.c-componentName[<element>|<modifier>] {}
+.c-componentName[__element|--modifier] {}
 ```
 
 Examples:
@@ -458,7 +458,7 @@ Developing responsive website using pure media queries is not scalable even in w
 3. designers and developers communication is not easy
 4. changing a breakpoint is painful
 
-To address this issues, Saname recommends use of named breakpoints and an API e.g. a mixin via a pre-processor
+To address this issues, Sanam recommends use of named breakpoints and an API e.g. a mixin via a pre-processor
  languages e.g. SASS.
  
 For example we can define a set of variables or a sass map as reference of named breakpoints and a mixin
@@ -501,6 +501,13 @@ Sanam Uses Following syntax for defining variables. all following parts are came
 
 ```css
 <propertyName>-<valueName>[--componentName[__elementName[--modifierName]]]
+```
+
+Example:
+```css
+// gray color of copyright element of footer component 
+$color-gray--footer__copyrigth
+$zIndex-1--nav__container
 ```
 
 This syntax has several benefits:
