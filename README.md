@@ -198,6 +198,21 @@ These classes are the worst classes, they're quick fixes and hacks. sometimes we
 apply a class on DOM to force something to work.
 We need to tell this class is less than ideal and temporary.
 
+Example:
+```html
+<!-- force an icon to move to right side by one pixel -->
+<i class="c-icon c-icon--close _goRight">
+</i>
+```
+
+Example:
+```css
+_goRight {
+    position: relative;
+    left:1px;
+}
+```  
+
 ## Objects Classes (o-)
 Object classes are abstracted pure structural and none cosmetic reusable piece of UI.
 they may be used anywhere and modifying them may have undesired side effects on many
