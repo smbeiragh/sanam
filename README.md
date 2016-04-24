@@ -1,4 +1,3 @@
-
 # Sanam Style Convention
 
 **Sanam, A minimal and flexible approach to developing maintainable & large scalable stylesheet.**
@@ -54,7 +53,7 @@ you should get the core principles and implement them in your projects as suits 
 22. [Z-index Scale](#z-index-scale)
 23. [Typography](#typography)
 24. [Limiting preprocessors features](#limiting-preprocessors-features)
-25. [Selector Nesting](#sselector-nesting)
+25. [Selector Nesting](#selector-nesting)
 26. [Loops & Branching](#loops-branching)
 27. [Mixins](#mixins)
 28. [Extend](#extend)
@@ -242,10 +241,10 @@ Format:
 Examples:
 ```css
 // navbar components root element class
-.o-navbar {}
+.c-navbar {}
 
 // navbar logo element class
-.o-navbar__logo {}
+.c-navbar__logo {}
 ```  
 
 ## Layout Classes (l-)
