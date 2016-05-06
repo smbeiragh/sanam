@@ -166,7 +166,7 @@ cosmetic changes. This type of class used typically in style switchers.
 
 ``` css
 /* the main header of page in sky theme */
-.t-skyThem c-mainHeader{
+.t-skyTheme c-mainHeader{
  background-color: blue;
 }
 ```
