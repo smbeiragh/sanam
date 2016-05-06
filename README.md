@@ -123,16 +123,16 @@ begins with ‘u’ namespace and this telling us several useful information.
 
 Sanam Style Convention suggests twelve different name spaces as following. You can adopt your own set of
 name spaces to fit your work, keeping in mind 1)each namespace should have a specific and simple to understand goal
-and 2)keep numbers of namespaces small as small possible   
+and 2)keep numbers of namespaces as small as possible   
 
 ## Utility Classes (u-)
 Utility classes are simple classes with a specific small task. Common examples of
 this type of classes are floating, clearFix, text alignment classes. these classes are
-reusable and can be used anywhere and should not be bound onto or changed, they can be added
+reusable and can be used anywhere and should not be bound onto or modified, they can be added
 anywhere and remove to do their small specific task *without any side effect*, they should not
 participate in other selectors, this is the meaning of not bounding on to them.
 
-Utility classes name space is **u-** 
+Utility classes namespace is **u-** 
 
 ```css
 /* GOOD */
@@ -141,14 +141,15 @@ Utility classes name space is **u-**
 }
 
 /* BAD */
+/* sould not bound on to utill class*/
 .someClass .u-pullLeft{
     color: blue;
 }
 ```
 
 ## Scoping Classes (s-)
-Scoping classes lets to define a scope of DOM whit special styles, .e.g in content manage management
-system, dynamic contents like post and pages can be considered as content scope, under content scope
+Scoping classes lets to define a scope of DOM with special styles, .e.g in content manage management
+systems, dynamic contents like post and pages can be considered as content scope, under content scope
 we can setup a custom typography, styling headings, paragraphs etc.
 These classes can lead to pure css codes and should be used wisely and limited. 
 
@@ -172,34 +173,50 @@ cosmetic changes. This type of class used typically in style switchers.
  
 ## State Classes (is-, has-)
 State classes define a piece of UI in a temporary specified state or condition,
-e.g. is-hidden, is-selected, is-disabled, .etc  
+is-hidden, is-selected, is-disabled are some of most common state classes  
 As Harry Roberts says:
 >It tells us that the DOM currently has a temporary, optional, or short-lived style applied to it due to a certain state being invoked.
 
 ``` css
 /* the main header in collapsed state */
 .c-mainHeader.is-collapsed{
- background-color: blue;
+ height: 0;
+ overflow: hidden;
 }
 ```
  
 ## Javascript Classes (js-)
-These classes are javascript hooks to DOM. Styles should not be bound onto these classes,
+These classes are javascript hooks to DOM. Styles should not apply via these classes,
 they tell developer this class is a javascript hook and should not be removed or changed
-or bound on to or rely on them. 
+or bound on to or rely on them.
 
-## Javascript Classes (qa-)
-These classes like js classes are hooks to DOM for test tools. Like js classes shouldn't 
-be bound on to or apply styles on them.
+```html
+<buttom class='c-nav__toggle js-navToggle'>
+    <i class="c-icon c-icon-menu"></i>
+</buttom>
+```
+
+## Testing Classes (qa-)
+These classes like js classes are hooks to DOM for test tools. Like js classes, test classes
+shouldn't be bound on to or apply styles on them.
+
+```html
+<form>
+    <input type="text"/>
+    <input type="submit" class="qa-submitSearchForm" value="search" />
+</form>
+```
 
 ## Hack Classes (_)
 These classes are the worst classes, they're quick fixes and hacks. sometimes we need to
 apply a class on DOM to force something to work.
-We need to tell this class is less than ideal and temporary.
+We need to tell other team members this class is less than ideal and temporary, don't reuse
+or develop base on this class, this type of class matters to change and refactor.
 
 Example:
 ```html
 <!-- force an icon to move to right side by one pixel -->
+<!-- the main issue is the icon itself, we should fix it later -->
 <i class="c-icon c-icon--close _goRight">
 </i>
 ```
@@ -215,16 +232,16 @@ _goRight {
 ## Objects Classes (o-)
 Object classes are abstracted pure structural and none cosmetic reusable piece of UI.
 they may be used anywhere and modifying them may have undesired side effects on many
-other unknown places. generally we should avoid modifying them or be careful about 
+other unknown places of project. generally we should avoid modifying them or be careful about 
 modifying them. Objects considered to follow open/closed principle, it means they are open 
 to extending but close to modifying. We often extend them and only modify them on major refactor.
-Sanam recommends use of BEM methodology on this namespace.
-  
->BEM convention will covered in section 15  
+
+>Objects namespace is a modular namespace. Sanam recommends use of BEM methodology
+ on modular name spaces. BEM convention will covered in section 15  
 
 Format:
 ``` css
-.o-objectName[<element>|<modifier>] {}
+.o-objectName[<element>[<modifier>]|<modifier>|] {}
 ```
 
 Examples:
@@ -232,19 +249,25 @@ Examples:
 // widget object root element class
 .o-widget {}
 
-// widget heading element class
+// heading element of widget object
 .o-widget__heading {}
+
+// large modifier of widget object
+.o-widget--large {}
+
+// small modifier of heading element of widget object
+.o-widget__heading--small {}
 ```
 
 ## Components/Modules Classes (c-)
-Components are reusable piece of UI.They can represent any visual repetitive piece of UI that anyone can
+Components are reusable piece of UI. They can represent any visual repetitive piece of UI that anyone can
 recognize them. Like buttons, dropdowns and so on. A component may have other components as children
 (composition) but a component may not extend other components but may extend an *Object*. By this limitation
-on extending, we limit modifying side effects to modified component, it lets us to confidently
-edit that component and check all instances of that component with a simple search while finding all instance of
-several unknown components that are extending a modified component needs careful checking in markup and it can
-be a large amount of effort. In contrast to Objects, components are close to extending but open to modifying.
-like objects, component classes benefits BEM methodology.
+on extending, we limit modifying side effects to a single modified component, it lets us to confidently
+edit that component and in worst case we can check all instances of that component with a simple search while
+finding all instance of several unknown components that are extending a modified component needs careful
+checking in markup and it can be a large amount of effort. In contrast to Objects, components are close
+to extending but open to modifying. like objects, component classes benefits BEM methodology.
 
 >BEM convention will covered in section 15  
   
@@ -290,6 +313,19 @@ Sometimes there are few shared common features in between different layouts, lik
 layout level objects are a mean to make this type of features reusable and encapsulated in a 
 set of classes. Like layout classes, layout level object benefits BEM methodology 
 
+```html
+<html class="l-default lo-fixedFooter">
+    <body class="l-default_body lo-fixedFooter__body">
+        <main class="lo-fixedFooter__main">
+            ...
+        </main>
+        <footer class="l-default__footer lo-fixedFooter__footer">
+            ...
+        </footer>
+    </body>
+</html>
+```
+
 ## Page Level Styles (p-)
 Sometimes we need to apply style on specific page. In well designed component based
 system this can happen rarely. Sanam suggests to provide a top level scoping class
@@ -327,7 +363,7 @@ many benefit including encapsulation, extensibility and compositions.
 using this pattern we bring the same benefits in CSS.
 
 *encapsulation*: 
-every module handles all of it's aspects including it's own state, elements, modifiers and
+every module handles all of it's aspects including it's own states, elements, modifiers and
 has noting to with other modules.
 
 1. Every module defines its own style in a separate file
@@ -343,14 +379,17 @@ A module can extend from objects, To keep maintenance simple Sanam limits extend
 When two modules has same element as root element we say one is extending another. this can
 be considered as special case of compositions where parent and child are at the same level.
 
-1. Components (modules in C namespace) can only and only extend Objects (modules in O namespace)
+1. Components (modules in c namespace) can only and only extend Objects (modules in o namespace)
 2. Modules can modify base component elements/modifiers via its own module classes and not base
 module classes
 
 ```html
 <!-- c-usersList extending o-list -->
 <ul class="c-usersList o-list">
-    <!-- c-usersList can modify o-list__item(item element) via c-usersList__item -->
+    <!-- 
+        c-usersList can modify o-list__item(item element) via c-usersList__item class
+        not o-list__item
+     -->
     <li class="c-usersList__item o-list__item"></li>
 </ul>
 ```
@@ -365,24 +404,30 @@ not child module class
 ```html
 <!-- c-actionBar composed of bottons and c-userList -->
 <div class="c-actionBar">
+    <!-- c-actionBar can midify btns via c-actionBar__action class
     <input class="c-btn c-btn--primary c-actionBar__action">
-    <input class="c-btn c-btn--default">
-    <input class="c-btn c-btn--default">
+    <input class="c-btn c-btn--default c-actionBar__action">
+    <input class="c-btn c-btn--default c-actionBar__action">
+    <!-- 
+        c-actionBar can midify c-usersList root element via c-actionBar__list class
+        but it should not modify c-usersList enternal (elements and modifiers)
+    -->    
     <ul class="c-usersList o-list c-actionBar__list">
         <!-- c-usersList can modify o-list__item(item element) via c-usersList__item -->
         <li class="c-usersList__item o-list__item"></li>
     </ul>
 </div>
 ```
+
 In this example c-actionBar can modify child bottom via c-actionBar__action,
-action element my be anything and c-actionBar just know there is a
+action element (c-actionBar__action) my be anything and c-actionBar just know there is a
 number or action elements an noting more, similarly c-actionBar can modify c-usersList root element
 via c-actionBar__list, but it shouldn't modify c-userList items, because actionBar dose't know anything
-about c-usersList internals or event about its existence! if we would like to modify list it should be
-done as modifier on c-userList or o-list to unify all lists in project level not based on parent
+about c-usersList internals or even about its existence! if we would like to modify list it should be
+done via modifier on c-userList or o-list to unify all lists in project level not based on parent
 component of list.
 
-There are several modular conventions including BEM, OCSS, SMACSS, DRY CSS. 
+There are several modular conventions including BEM, OCSS, SMACSS. 
 Sanam recommends [BEM](https://en.bem.info/) as modular convention in several
 namespaces including Components (c-), Objects (o-), Layouts (l-), Layout Objects (lo-)
 and Page level (p-)
@@ -401,16 +446,16 @@ components and widgets. Every UI is composed of Blocks
 Every block or module consists of Element, for example a figure consists of caption and image element.
 
 **Modifiers**:
-Modifiers are a mean to define permanent or temporary state of a module or its module elements.
+Modifiers are a mean to define variations of a module via small modification on module elements or module itself.
 
 BEM define a naming convention for class names as following 
 
 ```css
 // syntax
-.blockName[__elementName][--modiferName]
+.blockName[__elementName[--modiferName]][--modiferName]
 
 // syntax with namespaces
-.nameSpace-blockName[__elementName][--modiferName]
+.nameSpace-blockName[__elementName[--modiferName]][--modiferName]
 ```
   
 ```css
@@ -439,15 +484,15 @@ Following principles applies to BEM
 
 1. Every block must have a unique name
 2. Every block can contains several elements with unique names
- in scope of tha block
+ in scope of that block
 3. Every block can contains several elements with the same name
 4. Tag names should not be used in css selectors 
 5. Descendant selectors should be avoided except when applying
  a top level modifier or state class.
   
-> Sanam uses camelCase naming and (-, --, __) as semantic seperators   
+> Sanam uses camelCase naming and (-, --, __) as semantic separator  
  
-Read More about BEM in practice in these [great](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) [articles](https://css-tricks.com/bem-101/) and [website](http://getbem.com/)  
+[Read more](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) about BEM in practice in these [great article form css wizardry](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) [and css-tricks](https://css-tricks.com/bem-101/) and [BEM website](http://getbem.com/)  
 
 ## Responsive
 Developing responsive website using pure media queries is not scalable even in website with few pages.
@@ -499,13 +544,15 @@ $breakpoints: (
 Sanam Uses Following syntax for defining variables. all following parts are camelCase
 
 ```css
-<propertyName>-<valueName>[--componentName[__elementName[--modifierName]]]
+<propertyName>-<value[Name|Hint]>[--componentName[__elementName[--modifierName]]]
 ```
 
 Example:
 ```css
 // gray color of copyright element of footer component 
 $color-gray--footer__copyrigth
+
+// z-index of container element of nav componnent
 $zIndex-1--nav__container
 ```
 
@@ -518,25 +565,36 @@ This syntax has several benefits:
 3. component naming part tells where this variable is used if bounded to a component. 
 
 ## Colors
-Sanam Organize colors in four different categories including pallet colors, 
-gray scale colors, semantic colors and brand colors. Colors are one of types
-that can go out of control easily, managing number of colors can help reduce
-styles size. To mange colors applying all colors must be done via variables,
-also using an API like a SASS function can be useful but simplicity in this
-area can be more useful. Sanam suggests simple variables because:
+Sanam Organize colors in four different categories
+
+1. pallet colors
+2. gray scale colors
+3. semantic colors
+4. brand colors
+
+Colors are one of types that can go out of control easily, managing number 
+of colors can help reduce styles size. To mange colors applying all colors
+must be done via variables, also using an API like a SASS function can be
+useful but simplicity in this area can be more useful. Sanam suggests simple
+variables because:
 
 1. variables are easier to locate and search
 2. variables lets us benefit IDE auto complete
 
-hsl(hue, saturation, lightness) color format is recommended because:
+### colors formatting
+Sanam promotes use of hsl(hue, saturation, lightness) color format, hsl format is
 
-1. it's more understandable and meaningful to humans
-2. it's easier to notice un-intended color changes
+1. more understandable and meaningful to humans
+2. easier to notice un-intended color changes in contrast with hex and rgba
+3. easier to compare colors and shades
 
-sometimes we need to create an extra shade of a defined color which is not pre
-defined in variable in such cases we can use helper function to apply a custom
+### color shades
+Sanam suggest to provide a set of shades of every color using semantic names like
+base, dark and darker and stick to use this pre-defined shades.
+sometimes we need to create an extra shade of a defined color which is not 
+pre-defined in variable in such cases we can use helper function to apply a custom
 shade or alpha chanel, but this cases should be minor. if it often happens it 
-may you should re-tune predefined shades or add a few more shades as predefined
+may you should re-tune pre-defined shades or add a few more shades as predefined
 and don't let number of colors go out of control.
 
 ## Pallet Colors
@@ -544,12 +602,12 @@ Base on colors theory there are four type color pallets.
 
 1. *Mono color* with a single primary color
 2. *Adjacent colors* and *Triad colors* with one primary color and two secondary colors)
-3. *Tetrad* colors with four colors one primary color and two secondary colors plus
+3. *Tetrad* colors with four colors, one primary color and two secondary colors plus
  a complement color
 
 Sanam define four different color name as primary, secondary1, secondary2 and a 
 complement for the maximum number of colors and semantic names for several shades
-of each color. base on variable naming convention an example can look like this
+of each color. base on variable naming convention an example may look like as following
 
 ```scss
 
@@ -590,13 +648,13 @@ $color-complement--darkest:   hsl(10, 90%, 10%);
 ## Gray Shades
 Gray shades in most projects can get crazy very easily, Ideally having five
 different shades plus one white and black is enough but most designers are
-picky about color specially about gray shades. they would like to tune them
-test them and so on. this can very easily end to having lots of gray shades
-in small project. it's enough to have five or seven gray shades like pallet colors
-but if you think that's not working for you, Sanam recommends useing variable names
-with color code in their name. By doing this next time we try to apply a new gray
+picky about colors specially about gray shades. they would like to tune them
+test them and so on. this can very easily end up to having lots of gray shades
+in a small project. it's enough to have five or seven gray shades like pallet colors
+but if you think that's not working for you, Sanam recommends using variable names
+with color code in their names. By doing this next time we try to apply a new gray
 shade IDE will show us list of all defined shades and we can chose to add 
-a new shade or pike one of predefined shades. In case of not using IDE,
+a new shade or pike one of pre-defined shades. In case of not using IDE,
 preprocessor will complain about undefined variable and we will notice, then
 we can check our predefined gray variable to decide to define new variable or
 pike an old one.
@@ -692,7 +750,7 @@ $color-brandGreen--darkest:   hsl(121, 90%, 10%);
 ```
 
 ## Z-index Scale
-Z-index values can go out of control very easily. Even in small projects z-index headache is common.
+Z-index values can go out of control very easy. Even in small projects z-index headache is common.
 Setting arbitrary numbers on z-index and inspecting everything to make sure everything is working
 is'nt scalable even on small projects. Defining all z-index values in a single file can help us to
 keep an eye on all layers and their situation relative to each other. 
@@ -704,7 +762,7 @@ $zIndex-level--componentName[__elementName[--modifierName]|[--modifierName]]
 ```
    
 Level is a number between 1 and 10 that refers to teen private levels of z-index. they are private
-variables in z-index scale file and should't be use directly out side of that file.
+variables to z-index scale file and should't be use directly out side of that file.
 
 An example from one of my latest projects:
 ```scss
@@ -768,8 +826,8 @@ Always limit number of fonts to maximum of two font faces, usually a sans type f
 sometimes you may need a mono-space type for numeric counters or tables, code snippets and thing
 like that.
  
-You may need to have more control on some specefic properties like font-size and font-weight and font-style by defining
-mixins. Check font-weight mixin [example](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06)
+You may need to have more control on some specific properties like font-size and font-weight and font-style by defining
+mixins. Check font-weight mixin on [medium example](https://medium.com/@fat/mediums-css-is-actually-pretty-fucking-good-b8e2a6c78b06)
  
 You should always use typography scale variables/mixins to assign to typography properties. 
 
@@ -783,7 +841,7 @@ $fontSize-base:          14px; // body
 $fontSize-large:         18px;
 $fontSize-small:         12px;
 $fontSize-tiny:          11px;
-$fontSize-jombo:         50px;
+$fontSize-jumbo:         50px;
 
 $fontSize-h1:            36px;
 $fontSize-h2:            30px;
@@ -830,7 +888,7 @@ much more complex than regular CSS. The KISS principle (Keep It Simple Stupid) i
 key here and may even take precedence over the DRY principle (Don’t Repeat Yourself)
 in some circumstances.
 
-Some features like variable and small simple functions are the most useful and harmless
+Some features like variable and small simple functions and mixins are the most useful and harmless
 features of preprocessors. Other should be used carefully.   
 
 ## Selector Nesting
@@ -848,11 +906,12 @@ compiles to:
 .foo .bar{}
 ```
 
-Selector Nesting can be useful, but often can make more issus than solves.
+Selector Nesting can be useful, but often can make more issues than solves.
 
-1. it makes codebase unsearchable
-2. it makes code less easy to read
-3. it can increase use of descendant selector and decrease modularity
+1. it makes codebase unsearchable.
+2. it makes code less easy to read.
+3. it can increase potential use of descendant selector.
+4. it can decrease modularity
 
 To read more about this, check [Sass Guidlin](http://sass-guidelin.es/) and it's references on 
 [these](http://www.sitepoint.com/beware-selector-nesting-sass/)
@@ -861,23 +920,24 @@ To read more about this, check [Sass Guidlin](http://sass-guidelin.es/) and it's
  
 We should limit selector nesting by following rules
 
-1. limit selector nesting to a maximum level .e.g 3 or 4 levels
+1. limit selector nesting to a maximum level .e.g 3 or 4 levels, it's even better avoid them as
+long as possible
 2. limit selector nesting to pseudo-classes, pseudo-elements, state classes to keep everything
- about a component/selector in one place
+ about a component/selector in one place.
 3. limit use of selector nesting and descendant selectors to necessary cases    
 
 ## Loops & Branching
 Loops and conditional statement are not for everyday use. theses features are useful in complex
-codes like libraries and framework. we should limit use of them as much as possible. keep readability
+codes like libraries and frameworks. we should limit use of them as much as possible. keep readability
 and simplicity in mind, Reading 10 selectors is much simpler than reading a loop, but writing a loop to 
-generate 100 selectors is rational, although before doing this we should think why we need 100 selectors
+generate 100 selectors is rational, although before doing this we should think why we need 100 selectors,
 may be we're doing something wrong.
 
 ## Mixins
 Mixins are similar to partials in templating languages. Mixins are powerful enough to take care about 
 Mixins abuse. Try not to write complex mixins, keep them small and simple. over using mixins
 can increase stylesheet size because every single call of a mixin is equal to repeat all the mixin code
-in compiled css. Use css classes as reusable units instead of mixins when ever is it possible and
+in compiled css. Use css classes as reusable units instead of mixins when ever it is possible and
 reasonable for you, it's not about zero or one, you should keep a balance and choose when use mixins vs
 classes
 
@@ -905,17 +965,18 @@ Harry Roberts on [his article](http://csswizardry.com/2014/11/when-to-use-extend
 3. Keep an eye on your output.
 
 ## Vendors
-Most of projects uses 3rd parity libraries and framework, using a package manger to keep our dependacies
+Most of projects uses 3rd parity libraries and framework, using a package manger to keep our dependencies
 out of our source code is good idea, it can facilitate updating dependencies and prevent everybody on team
 from editing dependencies source code.
 
 ## Overriding Vendors
 Often we need to override vendors default styles, we should avoid editing dependencies source code.
-overriding can happen using vendor configs or by applying some css rules to override vendor css rules 
+overriding should be done using vendor configs or by applying some css rules to override vendor css rules,
+We should keep this type of modifications in a special file/directory.
 
 ## Legacy styles
 Sometimes, for example in a refactoring phase, we may have some old unconventional stylesheet which intended
-to be refactored and removed later. we keep this type of styles in a specific place, a file or a set of files
+to be refactored and removed later. We keep this type of styles in a specific place, a file or a set of files
 in a directory, when ever we have time to resume refactoring, we know where are old code and every body on team
 knows these styles are matter to refactor and removal and any new code shouldn't developed based on them. 
 
@@ -925,8 +986,9 @@ type of codes in a specific place, usually shame file to refactor them, every te
 this file are temporarily hacks that should be fixed and should not develop new code based on them.
 
 The difference between legacy styles and shame styles is about time, legacy styles are old styles
-during a huge style refactor phase. we do not develop legacy style. they're legacy, but shame styles
-are force codes that should be refactored and may happen in any time of project life time not a major refactor
+during a huge style refactor phase. We do not develop legacy style. they're legacy, but shame styles
+are force codes that should be refactored and may happen in any time of project life time not a 
+major refactor and we may sometimes develop shame code! 
 
 ## Reset styles
 A group of styles that are responsible to define default styles of html document.
@@ -937,7 +999,7 @@ consider a place like a file for reset styles.
 ## Environment variables
 Sometimes we need different configs for development and productions environments.
 for example we need to show breakpoints on development but hide it on production. it's possible
-to achieve this using include path to force env variable files resolve to different versions for
+to achieve this using include path to force env variables files resolve to different versions for
 different environments. But keep in mind we should use this just for tools config and our code
 should be the same in all environments.
 
@@ -1025,7 +1087,7 @@ coding itself is not a goal a it's a mean to achieve a goal which is developing 
 budget. Sanam is just a set of best practices I have read or learned from my experiences. You can and
 you should adopt it to your own needs. if You feel some parts are useless for you, you should put it aside
 or it may you fell you need some other namespaces or names and naming conventions. for example you may
-define t namespace as css transition and animations. feel free to develop new concepts but it's better
+define (t) namespace as css transition and (a) as animations. feel free to develop new concepts but it's better
 to test new ideas in pet projects not a production one!
         
 # License 
@@ -1033,12 +1095,10 @@ to test new ideas in pet projects not a production one!
  
  (The MIT License)
  
- Copyright (c) 2014-2016 Smbeiragh
+ Copyright (c) 2014-2016 smbeiragh
  
  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  
  THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- 
-
