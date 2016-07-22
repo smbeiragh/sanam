@@ -11,3 +11,5 @@ you should adopt it to your own needs. if You feel some parts are useless for yo
 or it may you fell you need some other namespaces or names and naming conventions. for example you may
 define (t) namespace as css transition and (a) as animations. feel free to develop new concepts but it's better
 to test new ideas in pet projects not a production one!
+
+[<- Back](../README.md)

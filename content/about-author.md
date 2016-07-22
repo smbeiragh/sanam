@@ -15,3 +15,5 @@ and easy to maintain and modify even with newcomer team members. Every body how 
 can maintain the project stylesheet. In case of project refactoring establishing suitable workflow
 is necessary, in large project with around 5K LOC or more stylesheets using a CSS test framework to
 detect broken styles during refactor can help a lot.
+
+[<- Back](../README.md)

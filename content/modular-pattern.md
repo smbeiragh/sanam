@@ -135,3 +135,5 @@ Following principles applies to BEM
 > Sanam uses camelCase naming and (-, --, __) as semantic separator  
  
 [Read more](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) about BEM in practice in these [great article form css wizardry](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) [and css-tricks](https://css-tricks.com/bem-101/) and [BEM website](http://getbem.com/)  
+
+[<- Back](../README.md)

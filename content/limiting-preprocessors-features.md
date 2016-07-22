@@ -84,3 +84,5 @@ Harry Roberts on [his article](http://csswizardry.com/2014/11/when-to-use-extend
 1. Please reconsider.
 2. Use the placeholder hack.
 3. Keep an eye on your output.
+
+[<- Back](../README.md)

@@ -70,3 +70,5 @@ as a starting point, you should adopt it for your projects.
 |-- _shame.scss               // shame styles  
 |-- main.scss                 // main entry point of our style. import all styles
 </pre>  
+
+[<- Back](../README.md)
