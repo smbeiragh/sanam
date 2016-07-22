@@ -64,8 +64,8 @@ you should get the core principles and implement them in your projects as suits 
 33. [Reset styles](#reset-styles)
 34. [Environment variables](#environment-variables)
 35. [Big Picture of Directory structure](#big-picture-of-directory-structure)
-36. [Documentation](./content/final.md#documentation)
-37. [Common Sense](./content/final.md#common-sense) 
+36. [Documentation](content/final.md#documentation)
+37. [Common Sense](content/final.md#common-sense) 
       
 # License 
 [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/legalcode)
