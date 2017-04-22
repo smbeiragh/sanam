@@ -11,7 +11,7 @@ As Harry Roberts said in his [article](http://csswizardry.com/2015/03/more-trans
 > whether or not we can reuse it elsewhere, and how safe it is to bind onto or modify.”
   
 So should we provide lengthy documentation on every single class and selector?
-A good code is a self documentary code. Meaningful classes are the the answer.
+A good code is a self documentary code. Meaningful classes are the answer.
 By using namespaces we’re able to communicate useful information about classes to other developers
 just by the class name itself right in html or css code.
 
@@ -54,7 +54,7 @@ Utility classes namespace is **u-**
 }
 
 /* BAD */
-/* sould not bound on to utill class*/
+/* should not bound on to utill class*/
 .someClass .u-pullLeft{
     color: blue;
 }
@@ -68,7 +68,7 @@ These classes can lead to pure css codes and should be used wisely and limited.
 
 ```css
 /* the p tag style in cms content scope */
-.s-cmsContent p{
+.s-cmsContent p {
  margin-bottom: 1rem
 }
 ```
@@ -79,7 +79,7 @@ cosmetic changes. This type of class used typically in style switchers.
 
 ``` css
 /* the main header of page in sky theme */
-.t-skyTheme c-mainHeader{
+.t-skyTheme c-mainHeader {
  background-color: blue;
 }
 ```
@@ -92,7 +92,7 @@ As Harry Roberts says:
 
 ``` css
 /* the main header in collapsed state */
-.c-mainHeader.is-collapsed{
+.c-mainHeader.is-collapsed {
  height: 0;
  overflow: hidden;
 }
@@ -247,7 +247,7 @@ override every aspect of page including components and layout. but keep in mind 
 component or layout in page level can be a sign of lacking a modifier on component
 level or layout level and writing page level style generally is not a good idea and
 can be lead to hard to maintain code. 
-When modifying any thing, try to be explicit and don't bound on classes of different
+When modifying anything, try to be explicit and don't bound on classes of different
 namespaces by defining classes in page level namespace.
 
 ```css
