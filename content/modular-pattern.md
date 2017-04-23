@@ -6,7 +6,7 @@ using this pattern we bring the same benefits in CSS.
 
 *encapsulation*: 
 every module handles all of it's aspects including it's own states, elements, modifiers and
-has noting to with other modules.
+has nothing to do with other modules.
 
 1. Every module defines its own style in a separate file
 2. A module file contains only and only styles related to one module
@@ -14,7 +14,7 @@ has noting to with other modules.
 4. CSS selectors of a module only includes classes of that module
 5. Every module can be used every where independent of it's own and document DOM Structure.   
 6. A child module should not know anything about it's parent module
-7. A parent module should not know anything about child module
+7. A parent module should not know anything about it's child module
  
 *extensibility*: 
 A module can extend from objects, To keep maintenance simple Sanam limits extending to objects.
@@ -22,7 +22,7 @@ When two modules has same element as root element we say one is extending anothe
 be considered as special case of compositions where parent and child are at the same level.
 
 1. Components (modules in c namespace) can only and only extend Objects (modules in o namespace)
-2. Modules can modify base component elements/modifiers via its own module classes and not base
+2. Modules can modify base component elements/modifiers via their own module classes and not base
 module classes
 
 ```html
@@ -46,13 +46,13 @@ not child module class
 ```html
 <!-- c-actionBar composed of bottons and c-userList -->
 <div class="c-actionBar">
-    <!-- c-actionBar can midify btns via c-actionBar__action class
+    <!-- c-actionBar can modify btns via c-actionBar__action class
     <input class="c-btn c-btn--primary c-actionBar__action">
     <input class="c-btn c-btn--default c-actionBar__action">
     <input class="c-btn c-btn--default c-actionBar__action">
     <!-- 
         c-actionBar can midify c-usersList root element via c-actionBar__list class
-        but it should not modify c-usersList enternal (elements and modifiers)
+        but it should not modify c-usersList internal (elements and modifiers)
     -->    
     <ul class="c-usersList o-list c-actionBar__list">
         <!-- c-usersList can modify o-list__item(item element) via c-usersList__item -->
@@ -61,10 +61,10 @@ not child module class
 </div>
 ```
 
-In this example c-actionBar can modify child bottom via c-actionBar__action,
+In this example c-actionBar can modify child botton via c-actionBar__action,
 action element (c-actionBar__action) my be anything and c-actionBar just know there is a
-number or action elements an noting more, similarly c-actionBar can modify c-usersList root element
-via c-actionBar__list, but it shouldn't modify c-userList items, because actionBar dose't know anything
+number or action elements and nothing more, similarly c-actionBar can modify c-usersList root element
+via c-actionBar__list, but it shouldn't modify c-userList items, because actionBar doesn't know anything
 about c-usersList internals or even about its existence! if we would like to modify list it should be
 done via modifier on c-userList or o-list to unify all lists in project level not based on parent
 component of list.
@@ -125,9 +125,9 @@ BEM define a naming convention for class names as following
 Following principles applies to BEM
 
 1. Every block must have a unique name
-2. Every block can contains several elements with unique names
+2. Every block can contain several elements with unique names
  in scope of that block
-3. Every block can contains several elements with the same name
+3. Every block can contain several elements with the same name
 4. Tag names should not be used in css selectors 
 5. Descendant selectors should be avoided except when applying
  a top level modifier or state class.
